@@ -6,9 +6,16 @@ ogImage: "/og/kontakt.png"
 smsPrefill: "Pozdrav, zanima me termin v Biasani."
 ---
 
-<Hero image="/photos/foto-102.jpg" tone="quiet">
+import { mdxMetadata } from '@/lib/metadata';
+export const metadata = mdxMetadata(frontmatter);
 
-# Kako do naju
+<Hero
+  eyebrow="Kontakt"
+  title={<>Kako do naju.</>}
+  titleVariant="serif"
+  tone="quiet"
+  image={{ src: "/photos/foto-102.jpg", alt: "Biasana center" }}
+>
 
 Najhitrejša pot je SMS — v miru, ko ti ustreza.
 

@@ -6,9 +6,17 @@ ogImage: "/og/spletni-tecaji.png"
 smsPrefill: "Pozdrav, zanima me spletni tečaj."
 ---
 
-<Hero image="/photos/gibalne-urice.jpg" tone="quiet">
+import { mdxMetadata } from '@/lib/metadata';
+export const metadata = mdxMetadata(frontmatter);
 
-# Ko ne moreš priti, prideva midve — preko Zoom-a.
+<Hero
+  eyebrow="Spletni tečaji"
+  title={<>Ko ne moreš priti,<br/>prideva midve.</>}
+  glory="Preko Zoom-a."
+  titleVariant="serif"
+  tone="quiet"
+  image={{ src: "/photos/gibalne-urice.jpg", alt: "Spletni tečaji" }}
+>
 
 Online tečaji so resni. Ne posnetki, ki si jih ogledaš, ko ti ustreza. **Vodene ure v živo**, v skupini ali individualno, z odzivom na tvoje telo in vprašanja.
 
@@ -20,27 +28,27 @@ Online tečaji so resni. Ne posnetki, ki si jih ogledaš, ko ti ustreza. **Voden
 
 <CourseGrid>
 
-<CourseCard href="/spletni-tecaji/shiatsu-masaza-za-dojencke">
+<CourseCard href="/spletni-tecaji/shiatsu-masaza-za-dojencke" tag="4-tedenski tečaj" teacher="Polona">
 ### Shiatsu masaža za dojenčke
 4-tedenski tečaj nežnih prijemov in akupresurnih točk — za krčke, napete trebuščke, neumirjeno spanje. Z dojenčkom v naročju, iz domačega naslonjača.
 </CourseCard>
 
-<CourseCard href="/spletni-tecaji/vadba-za-nosecnice">
+<CourseCard href="/spletni-tecaji/vadba-za-nosecnice" tag="Celotna nosečnost" teacher="Sabina">
 ### Celostna vadba in svetovanje za nosečnice
 Gibanje, dihanje in priprava telesa na porod — skozi celo nosečnost. Online podpora, ki ne potrebuje prevoza.
 </CourseCard>
 
-<CourseCard href="/spletni-tecaji/vadba-za-mamice">
+<CourseCard href="/spletni-tecaji/vadba-za-mamice" tag="Postpartum" teacher="Sabina">
 ### Celostna vadba in svetovanje za mamice po porodu
 Postpartum vadba in pogovor o dojenju, spanju, krčkih, odnosih, strahovih. Za prvih dvanajst mesecev in dlje.
 </CourseCard>
 
-<CourseCard href="/spletni-tecaji/pilates-za-zdravo-hrbtenico">
+<CourseCard href="/spletni-tecaji/pilates-za-zdravo-hrbtenico" tag="Za vsakogar" teacher="Sabina">
 ### Online pilates za zdravo hrbtenico
 Odprt za vsakogar, ki želi redno skrbeti za držo in gibljivost hrbtenice. Brez predznanja pilatesa.
 </CourseCard>
 
-<CourseCard href="/spletni-tecaji/pilates-za-vadece">
+<CourseCard href="/spletni-tecaji/pilates-za-vadece" tag="Nadaljevanje" teacher="Sabina">
 ### Online pilates za obstoječe vadeče
 Za tiste, ki v studiu že vadite in želite nadaljevati doma — z vajami, prilagojenimi napredku v skupini.
 </CourseCard>
@@ -56,3 +64,8 @@ Za tiste, ki v studiu že vadite in želite nadaljevati doma — z vajami, prila
 Vsak tečaj ima svoj "Želim sodelovati" gumb, ki odpre e-pošto z že vpisano zadevo — dodaj par besed o sebi in pošlji. Dobiš odgovor z vsemi podrobnostmi (termini, Zoom povezava, cena, način plačila).
 
 </Section>
+
+<PrviKorak
+  title="Želiš sodelovati?"
+  lede={`Vsak online tečaj se prijavi preko e-pošte. Na strani tečaja klikni gumb "Želim sodelovati" — odpre pošto s pripravljeno zadevo.`}
+/>

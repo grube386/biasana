@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { NAV_PRIMARY } from '@/lib/nav';
-import { COURSES } from './spletni-tecaji/page';
+import { COURSES } from '@/lib/courses';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://biasana.si';

@@ -6,26 +6,31 @@ ogImage: "/og/o-naju.png"
 smsPrefill: "Pozdrav, zanima me termin v Biasani."
 ---
 
-{/* ─── UVOD ─── */}
+import { mdxMetadata } from '@/lib/metadata';
+export const metadata = mdxMetadata(frontmatter);
 
-<Hero image="/photos/foto-39.jpg" tone="quiet">
-
-# Dve roki, dve poti, en prostor.
+<Hero
+  eyebrow="O naju"
+  title={<>Dve roki, dve poti,<br/>en prostor.</>}
+  glory="Telo ve. Vabiva ga."
+  titleVariant="serif"
+  tone="quiet"
+  image={{ src: "/photos/foto-39.jpg", alt: "Polona in Sabina" }}
+  secondaryImage={{ src: "/photos/sabina.jpg", alt: "Sabina" }}
+>
 
 Biasano vodiva skupaj. Polona iz ročnega, biodinamičnega dela; Sabina iz strukture gibanja in moči. Dopolnjujeva se — zato, da ti lahko ponudiva celo, ne le polovico.
 
 </Hero>
 
-{/* ─── POLONA ─── */}
-
-<PersonBlock image="/photos/foto-55.jpg" name="Polona" align="left">
+<PersonBlock image={{ src: "/photos/foto-55.jpg", alt: "Polona" }} name="Polona" align="left">
 
 ## Polona Skerbinek Miklavčič
 
 ### Kraniosakralna terapevtka, mentorica metode Pedosana
 
-Veliko delam z dojenčki, nosečnicami in otroki. S tistimi, ki besed še nimajo, in s tistimi, ki jih več ne najdejo. Kraniosakralna terapija v biodinamičnem pristopu je moj jezik — subtilen, počasen, zaupanja vreden. 
-Zelo rada pa pomagam tudi odraslim odkriti kako jim kranisoakralna terapija lahko pomaga. 
+Veliko delam z dojenčki, nosečnicami in otroki. S tistimi, ki besed še nimajo, in s tistimi, ki jih več ne najdejo. Kraniosakralna terapija v biodinamičnem pristopu je moj jezik — subtilen, počasen, zaupanja vreden.
+Zelo rada pa pomagam tudi odraslim odkriti kako jim kranisoakralna terapija lahko pomaga.
 
 Certificirana sem za metodo **Pedosana**, gibalno-razvojni pristop k delu z dojenčki. Specializirana za podporo pri dojenju, porodnem stresu, priraščenem jeziku, stisnjeni čeljusti in zgodnjem gibalnem razvoju.
 
@@ -38,9 +43,7 @@ Certificirana sem za metodo **Pedosana**, gibalno-razvojni pristop k delu z doje
 
 </PersonBlock>
 
-{/* ─── SABINA ─── */}
-
-<PersonBlock image="/photos/sabina.jpg" name="Sabina" align="right">
+<PersonBlock image={{ src: "/photos/sabina.jpg", alt: "Sabina" }} name="Sabina" align="right">
 
 ## Sabina Skerbinek Miklavčič
 
@@ -57,8 +60,6 @@ Dopolnilno sem izobražena za **Chi Nei Tsang** (taoistično detoks masažo treb
 
 </PersonBlock>
 
-{/* ─── SKUPAJ ─── */}
-
 <Section variant="sage">
 
 ## Skupaj
@@ -69,23 +70,21 @@ Leta 2024 sva postali tudi mami sinu Jakob Aljažu. Materinstvo je najino razume
 
 </Section>
 
-{/* ─── V MEDIJIH ─── */}
-
 <Section>
 
 ## V medijih
 
 <MediaList>
 
-<MediaItem publisher="Svet24.si" title="Bitka Sabine Miklavčič: 'Moja pot iz brezna …'" href="[link]">
+<MediaItem publisher="Svet24.si" title="Bitka Sabine Miklavčič: 'Moja pot iz brezna …'" href="https://svet24.si/njena/zdravje/sabina-miklavcic-sama-sebi-sem-bila-najvecji-sovraznik-515653">
 Dolgi intervju s Sabino o osebni poti, odnosu do telesa in nastanku Biasane.
 </MediaItem>
 
-<MediaItem publisher="Bibaleze.si" title="Prednosti kraniosakralne terapije za dojenčke" href="[link]">
+<MediaItem publisher="Bibaleze.si" title="Prednosti kraniosakralne terapije za dojenčke" href="https://www.bibaleze.si/novice/za-kaj-vse-je-odlicna-kraniosakralna-terapija-za-dojencke.html">
 Članek o tem, zakaj in kdaj se odločiti za kraniosakralno terapijo pri dojenčku.
 </MediaItem>
 
-<MediaItem publisher="Zon.si" title="Bolezni izhajajo tudi iz naše nepovezanosti s samim seboj" href="[link]">
+<MediaItem publisher="Zon.si" title="Bolezni izhajajo tudi iz naše nepovezanosti s samim seboj" href="https://zon.si/bolezni-izhajajo-tudi-iz-nase-nepovezanosti-s-samim-seboj/">
 Pogovor o filozofiji celostnega pristopa, ki stoji za Biasano.
 </MediaItem>
 
@@ -93,4 +92,4 @@ Pogovor o filozofiji celostnega pristopa, ki stoji za Biasano.
 
 </Section>
 
-<PrviKorak smsPrefill="Pozdrav, zanima me termin v Biasani." />
+<PrviKorak />

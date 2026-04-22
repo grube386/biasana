@@ -7,15 +7,20 @@ emailOwner: "biasana.sabina@gmail.com"
 emailSubject: "Prijava — Celostna vadba za mamice po porodu"
 ---
 
-<Hero image="/photos/foto-144.jpg" tone="quiet">
+import { mdxMetadata } from '@/lib/metadata';
+export const metadata = mdxMetadata(frontmatter);
 
-# Celostna vadba in svetovanje za mamice po porodu
+<Hero
+  eyebrow="Spletni tečaj · Postpartum"
+  title={<>Celostna vadba<br/>za mamice po porodu.</>}
+  glory="Novo telo, ne 'nazaj v formo'."
+  titleVariant="serif"
+  tone="quiet"
+  image={{ src: "/photos/foto-144.jpg", alt: "Celostna vadba za mamice po porodu" }}
+  cta={<EmailCta email="biasana.sabina@gmail.com" subject="Prijava — Celostna vadba za mamice po porodu">Želim sodelovati</EmailCta>}
+>
 
 Postpartum ni šest tednov. Je leto, včasih več. Vadba, ki to razume, ni vadba, ki te "spravi nazaj v formo" — je vadba, ki ti vrne telo v novo obliko.
-
-<EmailCta email="biasana.sabina@gmail.com" subject="Prijava — Celostna vadba za mamice po porodu">
-  Želim sodelovati
-</EmailCta>
 
 </Hero>
 
@@ -61,6 +66,17 @@ Posnetki ur so ti na voljo za primer, ko ti dan pač ne dopušča ure v živo.
 
 </Section>
 
+<Section>
+
 <EmailCta email="biasana.sabina@gmail.com" subject="Prijava — Celostna vadba za mamice po porodu" large>
   Želim sodelovati
 </EmailCta>
+
+<Link href="/spletni-tecaji">← Vsi spletni tečaji</Link>
+
+</Section>
+
+<PrviKorak
+  title="Zanima te celostna vadba za mamice po porodu?"
+  lede="Pošlji e-pošto in dobiš odgovor o bližnjem ciklu, ceni in pogojih."
+/>

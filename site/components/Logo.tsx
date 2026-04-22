@@ -14,6 +14,8 @@ export function Logo({ className, variant = 'full', invert = false }: Props) {
       href="/"
       aria-label="Biasana, domov"
       className={cn('inline-flex items-center gap-3 group', className)}
+      // Persisted browser tweak: preserve logo-link horizontal offset from the preview.
+      style={{ marginLeft: '10px', marginRight: '15px' }}
     >
       <span
         className={cn(
@@ -37,7 +39,7 @@ export function Logo({ className, variant = 'full', invert = false }: Props) {
             invert ? 'text-white' : 'text-teal-deep'
           )}
         >
-          BIASANA
+          Biasana
         </span>
       ) : null}
     </Link>

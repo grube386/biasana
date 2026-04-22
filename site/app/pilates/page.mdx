@@ -6,13 +6,19 @@ ogImage: "/og/pilates.png"
 smsPrefill: "Pozdrav, zanima me pilates v studiu."
 ---
 
-<Hero image="/photos/pilates.jpg">
+import { mdxMetadata } from '@/lib/metadata';
+export const metadata = mdxMetadata(frontmatter);
 
-# Pilates ni trening za izgorevanje. Je reorganizacija.
+<Hero
+  eyebrow="Pilates"
+  title={<>Pilates ni trening<br/>za izgorevanje.</>}
+  glory="Je reorganizacija."
+  titleVariant="serif"
+  image={{ src: "/photos/pilates.jpg", alt: "Pilates studio" }}
+  cta={<SmsCta context="pilates">Piši za vpis</SmsCta>}
+>
 
 V Biasani vadimo **klasični pilates — metodo Contrology**, tako kot jo je zastavil Joseph H. Pilates. Na originalnih napravah. V skupinah **največ treh oseb**. Z vajami, izbranimi za tvoje telo, ne za povprečno.
-
-<SmsCta>Piši za vpis</SmsCta>
 
 </Hero>
 
@@ -68,4 +74,4 @@ Sezona poteka v šolskem ritmu (september–junij). Število mest je omejeno —
 
 </Section>
 
-<PrviKorak smsPrefill="Pozdrav, zanima me pilates v studiu." />
+<PrviKorak context="pilates" />

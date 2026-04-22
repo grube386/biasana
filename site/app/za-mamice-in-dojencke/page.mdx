@@ -6,21 +6,21 @@ ogImage: "/og/za-mamice-in-dojencke.png"
 smsPrefill: "Pozdrav, zanima me termin za kraniosakralno terapijo za mamico in dojenčka."
 ---
 
-{/* ─── HERO ─── */}
+import { mdxMetadata } from '@/lib/metadata';
+export const metadata = mdxMetadata(frontmatter);
 
-<Hero image="/photos/kranio-dojenci.jpg">
+<Hero
+  eyebrow="Mamice in dojenčki"
+  title={<>Ko postane mama,<br/>se rodi tudi ona.</>}
+  glory="Dve terapevtki, mamica in dojenček hkrati."
+  titleVariant="serif"
+  image={{ src: "/photos/kranio-dojencki.jpg", alt: "Kranio za dojenčka" }}
+  cta={<SmsCta context="mother-baby">Piši za termin</SmsCta>}
+>
 
-# Ko postane mama, se rodi tudi ona.
-
-V prvih mesecih po porodu sta mamica in dojenček eno telo, ki se počasi uči biti dva. Oba potrebujeta podporo. Oba potrebujeta čas. Nobeden ne potrebuje nasveta, da bi se moral "zbrati".
-
-V Biasani ne ločujeva, kaj je tvoje in kaj otrokovo. Delava z obema — pogosto istočasno.
-
-<SmsCta>Piši za termin</SmsCta>
+V prvih mesecih po porodu sta mamica in dojenček eno telo, ki se počasi uči biti dva. Oba potrebujeta podporo. Oba potrebujeta čas. Nobeden ne potrebuje nasveta, da bi se moral "zbrati". V Biasani ne ločujeva, kaj je tvoje in kaj otrokovo — delava z obema, pogosto istočasno.
 
 </Hero>
-
-{/* ─── SIMULTANA TERAPIJA ─── */}
 
 <Section>
 
@@ -40,8 +40,6 @@ Porod je za mamico in dojenčka skupna izkušnja. Tudi sproščanje tega, kar je
 Termin dogovoriva po SMS-u — povej, koliko je star dojenček in kakšen je bil porod, da vajin termin uskladiva pravilno.
 
 </Section>
-
-{/* ─── PEDOSANA ─── */}
 
 <Section variant="sage">
 
@@ -69,7 +67,6 @@ Metoda Pedosana je gibalno-razvojni pristop, ki spoštuje naravno pot, po kateri
 
 <Program name="Maxi">
 **Od kobacanja do hoje.** Najbolj iznajdljivo obdobje. Podpiramo ravnotežje, prenos teže, prvi korak, ki pride, ko je čas.
-
 </Program>
 
 </ProgramGrid>
@@ -77,8 +74,6 @@ Metoda Pedosana je gibalno-razvojni pristop, ki spoštuje naravno pot, po kateri
 Urice potekajo ob petkih dopoldan, v šolskem ritmu (september–junij).
 
 </Section>
-
-{/* ─── SHIATSU ─── */}
 
 <Section>
 
@@ -96,8 +91,6 @@ Več o tečaju najdeš na [strani spletnih tečajev](/spletni-tecaji).
 
 </Section>
 
-{/* ─── INDIVIDUALNA PODPORA ─── */}
-
 <Section variant="teal">
 
 ## 4 · Individualna podpora prvih 4 tednov po porodu
@@ -113,10 +106,12 @@ Termin dogovoriva individualno. Piši po SMS-u — povej starost dojenčka in pa
 
 </Section>
 
-{/* ─── TESTIMONIAL ─── */}
+<Section>
 
-<Testimonial author="[ime, pridobiti pisno soglasje]" context="mamica, 6 tednov po porodu">
+<Testimonial author="Mamica, 6 tednov po porodu" context="pričevanje objavljeno s soglasjem">
 "Bila sem prepričana, da sem kriva, ker ne znam. Odšla sem z občutkom, da ni ničesar za znati — da samo čas potrebujeva. In z ramenom, ki se je dotaknilo mize, prvič po porodu."
 </Testimonial>
 
-<PrviKorak smsPrefill="Pozdrav, zanima me termin za kraniosakralno terapijo za mamico in dojenčka." />
+</Section>
+
+<PrviKorak context="mother-baby" />

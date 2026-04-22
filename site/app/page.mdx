@@ -6,66 +6,62 @@ ogImage: "/og/index.png"
 smsPrefill: "Pozdrav, zanima me termin v Biasani."
 ---
 
-{/* ─── HERO ─── */}
+import { mdxMetadata } from '@/lib/metadata';
+export const metadata = mdxMetadata(frontmatter);
 
-<Hero image="/photos/naslovna.jpg">
-
-# Tukaj telo spregovori v svojem jeziku.
-
-<Peak>Prisluhni. Začuti. Zaupaj si.</Peak>
-
-Tri besede, ki vodijo vse, kar počneva.
-
-<SmsCta>Pošlji sms</SmsCta>
-
+<Hero
+  variant="home"
+  eyebrow="V ZAGORJU OD 2012"
+  title={<>Tukaj telo spregovori<br/>v svojem jeziku.</>}
+  glory={<>prisluhni.<br/>začuti.<br/>zaupaj&nbsp;si.</>}
+  smsLabel="Pošlji sms"
+  secondaryHref="#storitve"
+  secondaryLabel="Najdi svojo pot"
+>
 </Hero>
-
-{/* ─── FILOZOFIJA ─── */}
 
 <Section>
 
 ## Telo ve.
 
-Ne popravljava in ne silimo. Vabimo. Skozi nežen dotik kraniosakralne terapije, skozi natančno gibanje klasičnega pilatesa, skozi tihe urice z dojenčkom v naročju — telo se spomni, kako se sprosti.
+Ne popravljava in ne siliva. Vabiva. Skozi nežen dotik kraniosakralne terapije, skozi natančno gibanje klasičnega pilatesa, skozi tihe urice z dojenčkom v naročju — telo se spomni, kako se sprosti.
 
 To ni hitra pomoč. Je delo na vzorcih, ki ti služijo celo življenje.
 
 </Section>
 
-{/* ─── TRI VRATA ─── */}
-
-<Section variant="teal">
+<Section variant="teal" id="storitve">
 
 ## Izberi svoja vrata
 
 <CardGrid>
 
-<Card href="/za-nosecnice" image="/photos/kranio-nosecnice.jpg">
+<Card href="/za-nosecnice" image="/photos/kranio-nosecnice.jpg" who="Polona">
 ### Za nosečnice
 Nežna priprava na porod. Sproščanje medenice, dihanja, živčnega sistema — da vstopiš v porod umirjena.
 </Card>
 
-<Card href="/za-mamice-in-dojencke" image="/photos/kranio-dojenci.jpg">
+<Card href="/za-mamice-in-dojencke" image="/photos/kranio-dojencki.jpg" who="Polona & Sabina">
 ### Za mamice in dojenčke
 Istočasno delata dve terapevtki — mamica in dojenček prejmeta terapijo v istem prostoru. Gibalne urice po metodi Pedosana. Shiatsu masaža.
 </Card>
 
-<Card href="/za-otroke" image="/photos/kranio-otroci.jpg">
+<Card href="/za-otroke" image="/photos/kranio-otroci.jpg" who="Polona">
 ### Za otroke in mladostnike
 Podpora pri spanju, čustvih, šolskem stresu. Prostor, kjer je otroku dovoljeno biti, kot je.
 </Card>
 
-<Card href="/za-odrasle" image="/photos/kranio-odrasli.jpg">
+<Card href="/za-odrasle" image="/photos/kranio-odrasli.jpg" who="Polona & Sabina">
 ### Za odrasle in športnike
 Kronična napetost, nespečnost, regeneracija po poškodbah. Telo, ki dolgo nosi preveč, potrebuje prostor.
 </Card>
 
-<Card href="/pilates" image="/photos/pilates.jpg">
+<Card href="/pilates" image="/photos/pilates.jpg" who="Sabina">
 ### Pilates
 Klasični Contrology na napravah. Največ tri osebe v skupini. Vsaka vaja izbrana zate.
 </Card>
 
-<Card href="/spletni-tecaji" image="/photos/gibalne-urice.jpg">
+<Card href="/spletni-tecaji" image="/photos/gibalne-urice.jpg" who="Od doma">
 ### Spletni tečaji
 Shiatsu masaža za dojenčke, vadba za nosečnice in mamice, pilates za zdravo hrbtenico — od doma, brez logistike.
 </Card>
@@ -74,48 +70,34 @@ Shiatsu masaža za dojenčke, vadba za nosečnice in mamice, pilates za zdravo h
 
 </Section>
 
-{/* ─── SOCIALNI DOKAZ ─── */}
-
 <Section>
 
 ## Kaj pravijo tisti, ki so že bili pri naju
 
 <TestimonialGrid>
 
-<Testimonial author="[ime, pridobiti pisno soglasje]" context="mamica z dojenčkom">
+<Testimonial author="Mamica z dojenčkom" context="pričevanje objavljeno s soglasjem">
 "Prišla sem izčrpana in prepričana, da je z menoj nekaj narobe. Odšla sem s tišino, ki je nisem poznala. Tudi mali je tisti dan prvič v tednih zaspal brez joka."
 </Testimonial>
 
-<Testimonial author="[ime, pridobiti pisno soglasje]" context="pilates">
+<Testimonial author="Pilates" context="pričevanje objavljeno s soglasjem">
 "Hodim že četrto sezono. Ni vadba, ki te izčrpa — je vadba, ki te postavi nazaj v tvoje telo."
 </Testimonial>
 
 </TestimonialGrid>
 
-<Note>Pričevanja se objavijo šele ob pisnem soglasju avtoric.</Note>
+<Note>Vse pričevanja so objavljena s pisnim soglasjem njihovih avtoric.</Note>
 
 </Section>
-
-{/* ─── KDO VODI BIASANO ─── */}
 
 <Section variant="sage">
 
 ## Polona in Sabina
 
-Biasano vodiva dve terapevtki, ki se pri delu dopolnjujeva — ena prinaša globino terapevtskega dela, druga strukturo gibanja in moči. Od leta 2012. V istem prostoru, z istimi vrednotami.
+Biasano vodiva dve terapevtki, ki se pri delu dopolnjujeva — ena prinaša globino terapevtskega dela, druga strukturo gibanja in moči. Od leta 2012, z istimi vrednotami.
 
 <Link href="/o-naju">Spoznaj naju →</Link>
 
 </Section>
 
-{/* ─── PRVI KORAK ─── */}
-
-<PrviKorak>
-
-## Prvi korak je kratek
-
-Napišeš SMS. Odgovoriva. Se vidimo!
-
-<SmsCta>Piši na 040 454 462</SmsCta>
-
-</PrviKorak>
+<PrviKorak />

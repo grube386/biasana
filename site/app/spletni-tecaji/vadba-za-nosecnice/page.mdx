@@ -7,15 +7,20 @@ emailOwner: "biasana.sabina@gmail.com"
 emailSubject: "Prijava — Celostna vadba za nosečnice"
 ---
 
-<Hero image="/photos/nosecnice-vadba.jpg" tone="quiet">
+import { mdxMetadata } from '@/lib/metadata';
+export const metadata = mdxMetadata(frontmatter);
 
-# Celostna vadba in svetovanje za nosečnice
+<Hero
+  eyebrow="Spletni tečaj · Celotna nosečnost"
+  title={<>Celostna vadba<br/>za nosečnice.</>}
+  glory="Gibanje, dihanje, pogovor."
+  titleVariant="serif"
+  tone="quiet"
+  image={{ src: "/photos/nosecnice-vadba.jpg", alt: "Celostna vadba za nosečnice" }}
+  cta={<EmailCta email="biasana.sabina@gmail.com" subject="Prijava — Celostna vadba za nosečnice">Želim sodelovati</EmailCta>}
+>
 
 Skozi celo nosečnost. Online, iz domače dnevne sobe. Gibanje, dihanje, pogovor — vse troje enako pomembno.
-
-<EmailCta email="biasana.sabina@gmail.com" subject="Prijava — Celostna vadba za nosečnice">
-  Želim sodelovati
-</EmailCta>
 
 </Hero>
 
@@ -59,6 +64,17 @@ Pridružiš se lahko kadar koli v nosečnosti — termini se vrtijo kontinuirano
 
 </Section>
 
+<Section>
+
 <EmailCta email="biasana.sabina@gmail.com" subject="Prijava — Celostna vadba za nosečnice" large>
   Želim sodelovati
 </EmailCta>
+
+<Link href="/spletni-tecaji">← Vsi spletni tečaji</Link>
+
+</Section>
+
+<PrviKorak
+  title="Zanima te celostna vadba za nosečnice?"
+  lede="Pošlji e-pošto in dobiš odgovor o bližnjem ciklu, ceni in pogojih."
+/>

@@ -6,13 +6,20 @@ ogImage: "/og/za-otroke.png"
 smsPrefill: "Pozdrav, zanima me termin za otroka."
 ---
 
-<Hero image="/photos/kranio-otroci.jpg" tone="quiet">
+import { mdxMetadata } from '@/lib/metadata';
+export const metadata = mdxMetadata(frontmatter);
 
-# Pri nas otrok ne rabi biti "priden".
+<Hero
+  eyebrow="Za otroke in mladostnike"
+  title={<>Pri nas otrok<br/>ne rabi biti "priden".</>}
+  glory="Brez sodb. Brez popravljanja."
+  titleVariant="serif"
+  tone="quiet"
+  image={{ src: "/photos/kranio-otroci.jpg", alt: "Kranio za otroka" }}
+  cta={<SmsCta context="children">Piši za termin</SmsCta>}
+>
 
 Obravnava ni nagrada za dobro vedenje in ni kazen za težkega dneva. Je prostor, kjer sme biti, kot je — buden, zaspan, nagajiv, tih. Z menoj dela njegovo telo, ne on.
-
-<SmsCta>Piši za termin</SmsCta>
 
 </Hero>
 
@@ -49,4 +56,4 @@ Z najstniki delamo drugače kot z malčki. Pogovor je bolj enakovreden, obravnav
 
 </Section>
 
-<PrviKorak smsPrefill="Pozdrav, zanima me termin za otroka." />
+<PrviKorak context="children" />

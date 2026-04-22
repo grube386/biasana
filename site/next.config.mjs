@@ -11,6 +11,13 @@ const nextConfig = {
   },
 };
 
-const withMDX = createMDX({});
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [
+      'remark-frontmatter',
+      ['remark-mdx-frontmatter', { name: 'frontmatter' }],
+    ],
+  },
+});
 
 export default withMDX(nextConfig);

@@ -6,15 +6,20 @@ ogImage: "/og/cenik.png"
 smsPrefill: "Pozdrav, zanima me termin v Biasani."
 ---
 
-<Hero image="/photos/foto-111.jpg" tone="quiet">
+import { mdxMetadata } from '@/lib/metadata';
+export const metadata = mdxMetadata(frontmatter);
 
-# Cenik in prvi obisk
+<Hero
+  eyebrow="Cenik"
+  title={<>Cenik in prvi obisk.</>}
+  titleVariant="serif"
+  tone="quiet"
+  image={{ src: "/photos/foto-111.jpg", alt: "Biasana studio" }}
+>
 
 Preden pogledaš cene — nekaj o tem, kako izgleda prvi obisk.
 
 </Hero>
-
-{/* ─── PRVI OBISK ─── */}
 
 <Section>
 
@@ -42,15 +47,13 @@ Za vse obiske: vodo, morebitno terapijo oz. diagnozo, če je relevantna. Za kran
 
 ### Parkiranje
 
-Parking je urejen na ulici. 
+Parking je urejen na ulici.
 
 ### Kaj pričakovati po obravnavi
 
 Po kraniosakralni terapiji je priporočljivo, da se ne vračaš takoj v hiter tempo. Veliko počitka in predvsem tekočine. Če pride lakota, se ne upiraj :)
 
 </Section>
-
-{/* ─── CENIK (Google Sheet) ─── */}
 
 <Section variant="teal">
 
@@ -63,8 +66,6 @@ Cenik se osvežuje iz Biasanine interne tabele; spremembe so vidne v največ eni
 </Note>
 
 </Section>
-
-{/* ─── BIABON ─── */}
 
 <Section>
 

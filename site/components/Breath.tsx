@@ -22,7 +22,7 @@ export function Breath({
       aria-hidden
       className={cn('pointer-events-none absolute animate-breathe', className)}
       style={{
-        background: `radial-gradient(closest-side, ${fill}, transparent 70%)`,
+        background: `radial-gradient(closest-side, ${fill}, transparent 50%)`,
         filter: 'blur(0.5px)',
       }}
     />

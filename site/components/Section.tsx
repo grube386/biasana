@@ -41,7 +41,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={cn('py-section-sm md:py-section', TONE_BG[tone], className)}
+      className={cn('py-[50px] md:py-[50px]', TONE_BG[tone], className)}
     >
       <div
         className={cn(

@@ -20,7 +20,7 @@ export function Footer() {
         <div className="absolute -right-24 bottom-0 h-[360px] w-[360px] rounded-full bg-teal-mid/40 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto max-w-wide px-5 pt-20 pb-10 md:px-10">
+      <div className="relative mx-auto max-w-wide px-5 pt-10 pb-10 md:px-10">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5 space-y-5">
             <Logo invert />

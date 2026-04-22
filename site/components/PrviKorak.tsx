@@ -22,7 +22,7 @@ export function PrviKorak({
   return (
     <section
       ref={ref}
-      className="prvi-gradient relative overflow-hidden py-[80px] text-center text-white md:py-[100px]"
+      className="prvi-gradient relative overflow-hidden py-[50px] text-center text-white md:py-[50px]"
     >
       <div className="vz" aria-hidden />
       <div className="relative mx-auto max-w-wide px-5 md:px-10">

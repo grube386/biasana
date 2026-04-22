@@ -7,15 +7,20 @@ emailOwner: "biasana.sabina@gmail.com"
 emailSubject: "Prijava — Online pilates za obstoječe vadeče"
 ---
 
-<Hero image="/photos/pilates.jpg" tone="quiet">
+import { mdxMetadata } from '@/lib/metadata';
+export const metadata = mdxMetadata(frontmatter);
 
-# Online pilates za obstoječe vadeče
+<Hero
+  eyebrow="Spletni tečaj · Nadaljevanje"
+  title={<>Online pilates<br/>za obstoječe vadeče.</>}
+  glory="Nadaljevanje studia, ne paralelni tečaj."
+  titleVariant="serif"
+  tone="quiet"
+  image={{ src: "/photos/pilates.jpg", alt: "Pilates za obstoječe vadeče" }}
+  cta={<EmailCta email="biasana.sabina@gmail.com" subject="Prijava — Online pilates za obstoječe vadeče">Želim sodelovati</EmailCta>}
+>
 
 Za tebe, ki v studiu že vadiš pilates, pa bi rada imela tedensko uro tudi doma. Nadaljevanje, ne paralelni tečaj.
-
-<EmailCta email="biasana.sabina@gmail.com" subject="Prijava — Online pilates za obstoječe vadeče">
-  Želim sodelovati
-</EmailCta>
 
 </Hero>
 
@@ -49,6 +54,17 @@ Za prijavo napiši, na katero uro v studiu trenutno hodiš — program se prilag
 
 </Section>
 
+<Section>
+
 <EmailCta email="biasana.sabina@gmail.com" subject="Prijava — Online pilates za obstoječe vadeče" large>
   Želim sodelovati
 </EmailCta>
+
+<Link href="/spletni-tecaji">← Vsi spletni tečaji</Link>
+
+</Section>
+
+<PrviKorak
+  title="Zanima te online pilates za obstoječe vadeče?"
+  lede="Pošlji e-pošto in dobiš odgovor o bližnjem ciklu, ceni in pogojih."
+/>

@@ -7,15 +7,20 @@ emailOwner: "biasana.sabina@gmail.com"
 emailSubject: "Prijava — Online pilates za zdravo hrbtenico"
 ---
 
-<Hero image="/photos/foto-102.jpg" tone="quiet">
+import { mdxMetadata } from '@/lib/metadata';
+export const metadata = mdxMetadata(frontmatter);
 
-# Online pilates za zdravo hrbtenico
+<Hero
+  eyebrow="Spletni tečaj · Za vsakogar"
+  title={<>Online pilates<br/>za zdravo hrbtenico.</>}
+  glory="Brez predznanja pilatesa."
+  titleVariant="serif"
+  tone="quiet"
+  image={{ src: "/photos/foto-102.jpg", alt: "Pilates za zdravo hrbtenico" }}
+  cta={<EmailCta email="biasana.sabina@gmail.com" subject="Prijava — Online pilates za zdravo hrbtenico">Želim sodelovati</EmailCta>}
+>
 
 Za vse, ki bi radi redno skrbeli za držo in gibljivost hrbtenice — brez predznanja pilatesa, v skupini, ki se ti prilagaja.
-
-<EmailCta email="biasana.sabina@gmail.com" subject="Prijava — Online pilates za zdravo hrbtenico">
-  Želim sodelovati
-</EmailCta>
 
 </Hero>
 
@@ -54,6 +59,17 @@ Program teče v sezonah (september–junij), s poletnim premorom. Število mest 
 
 </Section>
 
+<Section>
+
 <EmailCta email="biasana.sabina@gmail.com" subject="Prijava — Online pilates za zdravo hrbtenico" large>
   Želim sodelovati
 </EmailCta>
+
+<Link href="/spletni-tecaji">← Vsi spletni tečaji</Link>
+
+</Section>
+
+<PrviKorak
+  title="Zanima te online pilates za zdravo hrbtenico?"
+  lede="Pošlji e-pošto in dobiš odgovor o bližnjem ciklu, ceni in pogojih."
+/>

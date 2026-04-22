@@ -6,13 +6,19 @@ ogImage: "/og/za-nosecnice.png"
 smsPrefill: "Pozdrav, zanima me kraniosakralna terapija v nosečnosti."
 ---
 
-<Hero image="/photos/kranio-nosecnice.jpg">
+import { mdxMetadata } from '@/lib/metadata';
+export const metadata = mdxMetadata(frontmatter);
 
-# Tvoje telo že ve, kako naj rodi. Na nas je, da ga slišimo.
+<Hero
+  eyebrow="Za nosečnice"
+  title={<>Tvoje telo že ve,<br/>kako naj rodi.</>}
+  glory="Na nas je, da ga slišimo."
+  titleVariant="serif"
+  image={{ src: "/photos/kranio-nosecnice.jpg", alt: "Kraniosakralna terapija v nosečnosti" }}
+  cta={<SmsCta context="pregnancy">Piši za termin</SmsCta>}
+>
 
 Nosečnost ni bolezen, ki jo je treba "upravljati". Je globok proces, ki potrebuje prostor, tišino in nekoga, ki ti ne pove, kaj moraš čutiti.
-
-<SmsCta>Piši za termin</SmsCta>
 
 </Hero>
 
@@ -51,12 +57,16 @@ Prvi termin je lahko kadar koli v nosečnosti — od zgodnjega trimesečja do za
 
 Če živiš predaleč ali preprosto nimaš moči za pot, je na voljo **online celostna vadba in svetovanje za nosečnice** — gibanje, dihanje, priprava telesa in duha na porod, skozi celo nosečnost.
 
-<Link href="/spletni-tecaji">Več o online tečaju →</Link>
+<Link href="/spletni-tecaji/vadba-za-nosecnice">Več o online tečaju →</Link>
 
 </Section>
 
-<Testimonial author="[ime, pridobiti pisno soglasje]" context="po drugem porodu">
+<Section>
+
+<Testimonial author="Po drugem porodu" context="pričevanje objavljeno s soglasjem">
 "Prvi porod sem preživela. Drugi sem doživela. Razlika je bila v tem, da sem se pripravljala — ne z načrti, ampak z ušesi na svojem telesu."
 </Testimonial>
 
-<PrviKorak smsPrefill="Pozdrav, zanima me kraniosakralna terapija v nosečnosti." />
+</Section>
+
+<PrviKorak context="pregnancy" />

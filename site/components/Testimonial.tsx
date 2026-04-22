@@ -15,7 +15,7 @@ export function Testimonial({ quote, author, role, className }: Props) {
   return (
     <figure
       className={cn(
-        'border-t border-rule px-1 pt-7 pb-2',
+        'border-t border-rule px-1 pt-6 pb-2',
         className
       )}
     >

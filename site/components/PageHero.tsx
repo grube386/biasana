@@ -60,11 +60,12 @@ export function PageHero({
       {/* Left pattern column — flagship motif. Ghost in deep tone. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-y-0 left-0 w-[44px] md:w-[60px]"
+        className="pointer-events-none absolute inset-y-0 left-0 w-1/2"
         style={{
-          backgroundImage: 'url(/brand/vzorec-clean.svg)',
+          // Use a rotated source so the repeated motif runs in the intended direction.
+          backgroundImage: 'url(/brand/vzorec-clean-rotated-90.svg)',
           backgroundRepeat: 'repeat-y',
-          backgroundSize: '120px auto',
+          backgroundSize: '35% auto',
           backgroundPosition: 'left center',
           opacity: isDeep
             ? 'calc(var(--pattern-opacity) * 0.8)'
