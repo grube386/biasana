@@ -1,0 +1,281 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Font family CSS variables are injected by next/font via the <html> className.
+     Do not redefine them here — doing so overrides the generated @font-face names. */
+
+  --teal-deep: #005e58;
+  --teal-dark: #04524c;
+  --teal-mid: #257066;
+  --teal-base: #2f9688;
+  --teal-bright: #2f9688;
+  --teal-light: #38817d;
+  --sage: #abcdc3;
+  --sage-mist: #abcdc3;
+  --sage-soft: #dbe9e3;
+  --sage-paper: #f5f8f6;
+
+  /* Warm neutrals (design bundle) */
+  --cream: #faf7f2;
+  --paper: #f5f0e8;
+  --ink: #1a2a28;
+  --ink-soft: #4a5d5a;
+  --muted: #8ba19d;
+  --rule: #e6e0d4;
+
+  /* Tweakables — pattern density, hero depth, handwritten accent scale */
+  --pattern-opacity: 0.32;
+  --hero-darkness: 0;
+  --accent-scale: 1.1;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: #fbfbf9;
+  color: theme('colors.ink.DEFAULT');
+  font-family: var(--font-opensans);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+::selection {
+  background: var(--teal-deep);
+  color: #fff;
+}
+
+@layer base {
+  h1, h2, h3, h4 {
+    font-family: var(--font-harabara);
+    color: var(--teal-dark);
+    font-weight: 400;
+  }
+  a {
+    color: var(--teal-deep);
+    text-decoration-color: color-mix(in srgb, var(--teal-deep) 30%, transparent);
+    text-underline-offset: 3px;
+    transition: color 180ms ease, text-decoration-color 180ms ease;
+  }
+  a:hover {
+    color: var(--teal-dark);
+    text-decoration-color: var(--teal-deep);
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-eyebrow uppercase font-body font-semibold;
+    color: var(--teal-deep);
+  }
+  .eyebrow-white {
+    color: #cfe3dd;
+  }
+  .prose-biasana {
+    @apply text-ink leading-[1.75];
+  }
+  .prose-biasana p {
+    @apply mb-5;
+  }
+  .prose-biasana h2 {
+    @apply text-display-md mt-12 mb-4;
+  }
+  .prose-biasana h3 {
+    @apply font-display text-2xl text-teal-deep mt-8 mb-3;
+  }
+  .prose-biasana a {
+    @apply underline decoration-teal-light/40 underline-offset-4 hover:decoration-teal-deep;
+  }
+  .glory {
+    font-family: var(--font-glory);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+  }
+  .wordmark {
+    font-family: var(--font-harabara);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .serif-display {
+    font-family: var(--font-fraunces);
+    font-weight: 400;
+    letter-spacing: -0.005em;
+  }
+  .rule {
+    @apply block h-px;
+    background: linear-gradient(to right, transparent, rgba(56,129,125,0.35), transparent);
+  }
+
+  /* Accent (Give You Glory) sizes scale via --accent-scale */
+  .accent-xl {
+    font-family: var(--font-glory);
+    font-size: calc(clamp(56px, 11vw, 150px) * var(--accent-scale) * 0.92);
+    line-height: 0.95;
+    letter-spacing: -0.005em;
+  }
+  .accent-lg {
+    font-family: var(--font-glory);
+    font-size: calc(68px * var(--accent-scale));
+    line-height: 1.05;
+  }
+  .accent-md {
+    font-family: var(--font-glory);
+    font-size: calc(36px * var(--accent-scale));
+    line-height: 1.1;
+  }
+  .accent-sm {
+    font-family: var(--font-glory);
+    font-size: calc(22px * var(--accent-scale));
+    line-height: 1.15;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-teal-deep text-white px-7 py-3.5 text-[0.95rem] font-semibold tracking-wide shadow-soft transition-all duration-300;
+  }
+  .btn-primary:hover {
+    @apply bg-teal-dark shadow-card -translate-y-0.5;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-teal-deep/25 text-teal-deep px-6 py-3 text-[0.92rem] font-semibold transition-colors;
+  }
+  .btn-ghost:hover {
+    @apply bg-teal-deep/5 border-teal-deep/60;
+  }
+  .btn-white {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-white text-teal-deep px-7 py-3.5 text-[0.95rem] font-semibold tracking-wide shadow-soft transition-all duration-300;
+  }
+  .btn-white:hover {
+    background: #f0ece3;
+    @apply -translate-y-0.5 shadow-card;
+  }
+  .btn-outline-white {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/40 text-white px-6 py-3 text-[0.92rem] font-semibold transition-colors;
+  }
+  .btn-outline-white:hover {
+    @apply bg-white/10 border-white/70;
+  }
+}
+
+@layer utilities {
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.045;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.6'/></svg>");
+  }
+
+  /* Vzorec overlay — used at emotional peaks only (hero, PrviKorak) */
+  .vz {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url('/brand/vzorec-clean.svg');
+    background-repeat: repeat;
+    background-size: 360px auto;
+    background-position: center top;
+    opacity: var(--pattern-opacity);
+    mix-blend-mode: screen;
+  }
+
+  /* Teal hero — Pesem evolution */
+  .hero-teal {
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    background: radial-gradient(130% 90% at 30% 15%,
+      color-mix(in oklab, #2f9688 100%, #04524c calc(var(--hero-darkness) * 50%)) 0%,
+      color-mix(in oklab, #04524c 100%, #041816 calc(var(--hero-darkness) * 100%)) 70%,
+      #042621 100%);
+  }
+
+  /* PrviKorak radial */
+  .prvi-gradient {
+    background: radial-gradient(130% 100% at 50% 0%,
+      color-mix(in oklab, #2f9688 100%, #04524c calc(var(--hero-darkness) * 50%)) 0%,
+      color-mix(in oklab, #04524c 100%, #041816 calc(var(--hero-darkness) * 100%)) 80%);
+  }
+
+  .hero-radial {
+    background:
+      radial-gradient(60% 65% at 18% 20%, rgba(47,150,136,0.55), transparent 60%),
+      radial-gradient(55% 60% at 82% 78%, rgba(4,82,76,0.7), transparent 55%),
+      linear-gradient(140deg, #04524c 0%, #005e58 45%, #257066 100%);
+  }
+  .teal-gradient {
+    background: linear-gradient(140deg, #04524c 0%, #005e58 55%, #2f9688 100%);
+  }
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  }
+
+  /* Diagonal-stripe placeholder (warm) */
+  .ph-warm {
+    background:
+      repeating-linear-gradient(135deg,
+        rgba(0,94,88,.08) 0 10px,
+        rgba(0,94,88,.02) 10px 20px),
+      linear-gradient(135deg, #e9e3d6 0%, #d8ccb9 100%);
+    color: var(--teal-deep);
+  }
+  .ph-sage {
+    background:
+      repeating-linear-gradient(135deg,
+        rgba(0,94,88,.10) 0 10px,
+        rgba(0,94,88,.02) 10px 20px),
+      linear-gradient(135deg, #c8ddd4 0%, #abcdc3 100%);
+    color: var(--teal-dark);
+  }
+
+  /* Divider — hairline of vzorec, horizontally repeating */
+  .divider-pattern {
+    position: relative;
+    height: 38px;
+    overflow: hidden;
+    background-image: url('/brand/vzorec-clean.svg');
+    background-repeat: repeat-x;
+    background-size: auto 120px;
+    background-position: center;
+    opacity: calc(var(--pattern-opacity) * 1.8);
+  }
+
+  /* Reveal — IntersectionObserver adds .in */
+  .fade {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 800ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                transform 800ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: var(--d, 0ms);
+  }
+  .fade.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .fade {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

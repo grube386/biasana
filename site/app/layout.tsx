@@ -1,0 +1,48 @@
+import type { Metadata, Viewport } from 'next';
+import { harabara, glory, openSans, fraunces } from './fonts';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import './globals.css';
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://biasana.si'),
+  title: {
+    default: 'Biasana — Celosten center za dobro počutje v Zagorju',
+    template: '%s · Biasana',
+  },
+  description:
+    'Kraniosakralna terapija, klasični pilates in gibalno-razvojne urice za dojenčke v Zagorju ob Savi. Nežno, individualno, od leta 2012.',
+  openGraph: {
+    type: 'website',
+    locale: 'sl_SI',
+    siteName: 'Biasana',
+    url: 'https://biasana.si',
+  },
+  alternates: {
+    canonical: '/',
+  },
+  icons: {
+    icon: '/brand/logo.svg',
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#04524c',
+  width: 'device-width',
+  initialScale: 1,
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html
+      lang="sl"
+      className={`${harabara.variable} ${openSans.variable} ${glory.variable} ${fraunces.variable}`}
+    >
+      <body className="min-h-screen flex flex-col antialiased">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </body>
+    </html>
+  );
+}
