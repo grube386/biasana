@@ -89,7 +89,7 @@ export function Header() {
                   'relative text-[0.88rem] font-body font-semibold tracking-wide transition-colors',
                   lightText
                     ? active
-                      ? 'text-white'
+                      ? '!text-white hover:!text-white' // At top of page, active link stays pure white — no hover color shift.
                       : topStateInactiveLinkClass // At top of page, inactive links brighten from 85% white to full white on hover.
                     : active
                       ? 'text-teal-deep'
@@ -116,10 +116,10 @@ export function Header() {
           <a
             href={smsHref('default')}
             className={cn(
-              'ml-2 inline-flex w-[140px] items-center gap-2 rounded-full px-4 py-2 text-[0.85rem] font-semibold transition-colors',
+              'btn-shimmer ml-2 inline-flex w-[140px] items-center gap-2 rounded-full px-4 py-2 text-[0.85rem] font-semibold',
               lightText
-                ? 'border border-white/40 text-white hover:bg-white hover:text-teal-deep hover:border-white'
-                : 'border border-teal-deep/25 text-teal-deep hover:bg-teal-deep hover:text-white hover:border-teal-deep'
+                ? 'border border-white/40 text-white'
+                : 'border border-teal-deep/25 text-teal-deep'
             )}
           >
             <svg aria-hidden viewBox="0 0 24 24" className="h-3.5 w-3.5">

@@ -64,7 +64,7 @@ body {
     text-underline-offset: 3px;
     transition: color 180ms ease, text-decoration-color 180ms ease;
   }
-  a:hover {
+  a:not(.btn-shimmer):hover {
     color: var(--teal-dark);
     text-decoration-color: var(--teal-deep);
   }
@@ -138,32 +138,124 @@ body {
     line-height: 1.15;
   }
 
+  /* Shimmer is defined with grouped selectors so every button variant gets the
+     pseudo-element rules directly. @apply only copies base declarations, not
+     pseudo-element rules — so variants that only @apply btn-shimmer would
+     otherwise miss the ::before. Listing each variant explicitly fixes that. */
+  .btn-shimmer,
+  .btn-primary,
+  .btn-ghost,
+  .btn-white,
+  .btn-outline-white {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .btn-shimmer > *,
+  .btn-primary > *,
+  .btn-ghost > *,
+  .btn-white > *,
+  .btn-outline-white > * {
+    position: relative;
+    z-index: 1;
+  }
+  .btn-shimmer::before,
+  .btn-primary::before,
+  .btn-ghost::before,
+  .btn-white::before,
+  .btn-outline-white::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(100deg, transparent 15%, currentColor 50%, transparent 85%);
+    background-size: 220% 100%;
+    background-repeat: no-repeat;
+    background-position: -110% 0;
+    -webkit-mask-image: url('/brand/vzorec-clean.svg');
+            mask-image: url('/brand/vzorec-clean.svg');
+    -webkit-mask-size: 140px auto;
+            mask-size: 140px auto;
+    -webkit-mask-repeat: repeat;
+            mask-repeat: repeat;
+    opacity: 0.75;
+    transition: background-position 0ms;
+    will-change: background-position;
+  }
+  .btn-shimmer:hover::before,
+  .btn-shimmer:focus-visible::before,
+  .btn-primary:hover::before,
+  .btn-primary:focus-visible::before,
+  .btn-ghost:hover::before,
+  .btn-ghost:focus-visible::before,
+  .btn-white:hover::before,
+  .btn-white:focus-visible::before,
+  .btn-outline-white:hover::before,
+  .btn-outline-white:focus-visible::before {
+    background-position: 110% 0;
+    transition-duration: 700ms;
+    transition-timing-function: cubic-bezier(.25, .75, .35, 1);
+  }
+  .btn-shimmer:active::before,
+  .btn-primary:active::before,
+  .btn-ghost:active::before,
+  .btn-white:active::before,
+  .btn-outline-white:active::before {
+    background-position: 110% 0;
+    transition-duration: 320ms;
+    transition-timing-function: cubic-bezier(.2, .8, .3, 1);
+  }
+  .btn-shimmer:active,
+  .btn-primary:active,
+  .btn-ghost:active,
+  .btn-white:active,
+  .btn-outline-white:active {
+    transform: scale(0.97);
+    transition: transform 120ms ease-out;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .btn-shimmer:hover::before,
+    .btn-shimmer:focus-visible::before,
+    .btn-shimmer:active::before,
+    .btn-primary:hover::before,
+    .btn-primary:focus-visible::before,
+    .btn-primary:active::before,
+    .btn-ghost:hover::before,
+    .btn-ghost:focus-visible::before,
+    .btn-ghost:active::before,
+    .btn-white:hover::before,
+    .btn-white:focus-visible::before,
+    .btn-white:active::before,
+    .btn-outline-white:hover::before,
+    .btn-outline-white:focus-visible::before,
+    .btn-outline-white:active::before { transition-duration: 0ms; background-position: -110% 0; }
+    .btn-shimmer:active,
+    .btn-primary:active,
+    .btn-ghost:active,
+    .btn-white:active,
+    .btn-outline-white:active { transform: none; }
+  }
+
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 rounded-full bg-teal-deep text-white px-7 py-3.5 text-[0.95rem] font-semibold tracking-wide shadow-soft transition-all duration-300;
   }
   .btn-primary:hover {
-    @apply bg-teal-dark shadow-card -translate-y-0.5;
+    @apply shadow-card -translate-y-0.5;
   }
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-teal-deep/25 text-teal-deep px-6 py-3 text-[0.92rem] font-semibold transition-colors;
-  }
-  .btn-ghost:hover {
-    @apply bg-teal-deep/5 border-teal-deep/60;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-teal-deep/25  px-6 py-3 text-[0.92rem] font-semibold;
   }
   .btn-white {
     @apply inline-flex items-center justify-center gap-2 rounded-full bg-white text-teal-deep px-7 py-3.5 text-[0.95rem] font-semibold tracking-wide shadow-soft transition-all duration-300;
   }
   .btn-white:hover {
-    background: #f0ece3;
     @apply -translate-y-0.5 shadow-card;
   }
   .btn-outline-white {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/40 text-white px-6 py-3 text-[0.92rem] font-semibold transition-colors;
-  }
-  .btn-outline-white:hover {
-    @apply bg-white/10 border-white/70;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/40 text-white px-6 py-3 text-[0.92rem] font-semibold;
   }
 }
+
 
 @layer utilities {
   .grain {
