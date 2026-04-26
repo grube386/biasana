@@ -491,7 +491,7 @@ function Map({ address }: { address?: string }) {
     <div className="relative aspect-[4/3] overflow-hidden rounded-[22px] border border-teal-deep/10 bg-sage-paper mt-4">
       <iframe
         title={address ? `Lokacija: ${address}` : 'Lokacija Biasane v Zagorju ob Savi'}
-        src="https://www.openstreetmap.org/export/embed.html?bbox=14.998%2C46.129%2C15.018%2C46.138&amp;layer=mapnik&amp;marker=46.1335%2C15.0078"
+        src="https://maps.google.com/maps?q=Cesta+Borisa+Kidriča+17,+1410+Zagorje+ob+Savi&t=&z=16&ie=UTF8&iwloc=&output=embed"
         className="absolute inset-0 h-full w-full"
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"

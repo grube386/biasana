@@ -5,7 +5,7 @@ export const PHONE_SMS = '+38640454462';
 export const EMAIL_POLONA = 'polona.biasana@gmail.com';
 export const EMAIL_SABINA = 'biasana.sabina@gmail.com';
 
-export const ADDRESS_LINE = 'Zagorje ob Savi, 1410, Slovenija';
+export const ADDRESS_LINE = 'Cesta Borisa Kidriča 17, 1410 Zagorje ob Savi, Slovenija';
 
 export const SOCIAL = {
   facebook: 'https://www.facebook.com/BiasanaCenter/',
