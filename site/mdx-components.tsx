@@ -76,7 +76,6 @@ function Hero(props: HeroProps) {
         eyebrow={props.eyebrow}
         title={props.title}
         glory={props.glory}
-        lede={props.children}
       />
     );
   }
@@ -534,8 +533,7 @@ function Program({ name, children }: { name: string; children?: ReactNode }) {
 
 // ─── <CourseGrid> / <CourseCard> ─────────────────────────────────
 function CourseGrid({ children }: { children?: ReactNode }) {
-  // Apply the latest visual spacing from the design tweak: no column gap, tight row gap.
-  return <ul className="grid gap-y-[8px] gap-x-0 md:grid-cols-2">{children}</ul>;
+  return <ul className="grid gap-6">{children}</ul>;
 }
 
 type CourseCardProps = {
@@ -548,24 +546,16 @@ type CourseCardProps = {
 function CourseCard({ href, tag, teacher, children }: CourseCardProps) {
   const { title, description } = splitCardChildren(children);
   return (
-    // Mirror the adjusted per-item inset so each card keeps the same outer rhythm.
-    <li className="mx-[5px] px-[10px]">
+    <li>
       <NextLink
         href={href}
-        className="group flex h-full flex-col rounded-[22px] bg-white border border-teal-deep/10 pr-7 pl-[calc(theme(spacing.7)+10px)] py-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
+        className="group flex h-full flex-col rounded-[22px] border border-teal-deep/10 bg-white py-7 pr-7 pl-[38px] shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
       >
-        {/* Apply title insets and spacing from the approved visual tweak. */}
-        <h3 className="mt-[5px] mx-[5px] px-[10px] font-display text-2xl text-teal-dark">
-          {title}
-        </h3>
+        <h3 className="font-display text-2xl text-teal-dark">{title}</h3>
         {description ? (
-          // Keep body text inset and the tighter paragraph rhythm from the visual pass.
-          <div className="mt-[5px] text-[0.95rem] text-ink-soft [&>p]:m-0 [&>p]:my-[5px] [&>p]:px-[10px]">
-            {description}
-          </div>
+          <div className="mt-3 text-[0.95rem] text-ink-soft [&>p]:m-0">{description}</div>
         ) : null}
-        {/* Use explicit 8x10 padding on the CTA block to match the tuned card sample. */}
-        <span className="inline-flex items-center gap-[15px] px-[10px] py-[8px] text-sm font-semibold text-teal-deep">
+        <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-teal-deep">
           Preberi več →
         </span>
       </NextLink>
