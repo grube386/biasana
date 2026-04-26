@@ -534,7 +534,8 @@ function Program({ name, children }: { name: string; children?: ReactNode }) {
 
 // ─── <CourseGrid> / <CourseCard> ─────────────────────────────────
 function CourseGrid({ children }: { children?: ReactNode }) {
-  return <ul className="grid gap-6 md:grid-cols-2">{children}</ul>;
+  // Match the tuned card matrix spacing: tighter rows, controlled columns.
+  return <ul className="grid gap-y-[15px] gap-x-5 md:grid-cols-2">{children}</ul>;
 }
 
 type CourseCardProps = {
@@ -547,21 +548,24 @@ type CourseCardProps = {
 function CourseCard({ href, tag, teacher, children }: CourseCardProps) {
   const { title, description } = splitCardChildren(children);
   return (
+    // Keep layout simple: spacing is controlled by the card container itself.
     <li>
       <NextLink
         href={href}
-        className="group flex h-full flex-col rounded-[22px] bg-white border border-teal-deep/10 p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
+        className="group flex h-full flex-col rounded-[22px] bg-white border border-teal-deep/10 pr-7 pl-[calc(theme(spacing.7)+10px)] py-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
       >
-        {teacher ? (
-          <div className="flex justify-end">
-            <span className="text-xs text-ink-mute">z {teacher}</span>
+        {/* Apply title insets and spacing from the approved visual tweak. */}
+        <h3 className="mt-[5px] mx-[5px] px-[10px] font-display text-2xl text-teal-dark">
+          {title}
+        </h3>
+        {description ? (
+          // Keep compact vertical rhythm and add matching body insets.
+          <div className="mt-[5px] text-[0.95rem] text-ink-soft [&>p]:m-0 [&>p]:px-[10px]">
+            {description}
           </div>
         ) : null}
-        <h3 className="font-display text-2xl text-teal-dark">{title}</h3>
-        {description ? (
-          <div className="mt-3 text-[0.95rem] text-ink-soft [&>p]:m-0">{description}</div>
-        ) : null}
-        <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-teal-deep">
+        {/* Add CTA insets and breathing room above/below while keeping the larger icon gap. */}
+        <span className="mt-[8px] mb-[8px] inline-flex items-center gap-[15px] px-[10px] text-sm font-semibold text-teal-deep">
           Preberi več →
         </span>
       </NextLink>
@@ -570,17 +574,93 @@ function CourseCard({ href, tag, teacher, children }: CourseCardProps) {
 }
 
 // ─── <PricingTables> ─────────────────────────────────────────────
+type PriceItem = { label: string; price: string; note?: string };
+type PriceGroup = { title: string; meta?: string; items: PriceItem[] };
+
+const PRICING_GROUPS: PriceGroup[] = [
+  {
+    title: 'Kraniosakralna terapija',
+    meta: '60-minutna obravnava',
+    items: [
+      { label: 'Posamezna obravnava', price: '55 €' },
+      { label: 'Paket 5 obravnav', price: '250 €', note: '50 €/obrav.' },
+      { label: 'Paket 10 obravnav', price: '480 €', note: '48 €/obrav.' },
+      { label: 'Otroška obravnava (do 7 let)', price: '45 €' },
+      { label: 'Mamica in dojenček · dve terapevtki, hkrati', price: '85 €' },
+      { label: 'Obravnava na domu — prve tedne po porodu', price: '75 €' },
+    ],
+  },
+  {
+    title: 'Pilates · Contrology',
+    meta: 'Naprave · največ 3 v skupini',
+    items: [
+      { label: 'Prva individualna obravnava (60 min)', price: '45 €' },
+      { label: 'Skupinska ura (55 min, posamezna)', price: '22 €' },
+      { label: 'Mesečna karta · 1× tedensko', price: '80 €' },
+      { label: 'Mesečna karta · 2× tedensko', price: '150 €' },
+      { label: 'Sezonska karta · 1× tedensko (sep–jun)', price: '720 €' },
+    ],
+  },
+  {
+    title: 'Gibalne urice · metoda Pedosana',
+    meta: '60 min · največ 4 pari mamica–dojenček',
+    items: [
+      { label: 'Posamezni obisk', price: '22 €' },
+      { label: 'Mesečna karta (4 obiski)', price: '80 €' },
+      { label: 'Sezonska karta (sep–jun)', price: '700 €' },
+    ],
+  },
+  {
+    title: 'Spletni tečaji',
+    meta: 'Preko Zoom-a, v živo',
+    items: [
+      { label: 'Shiatsu masaža za dojenčke · 4-tedenski tečaj', price: '90 €' },
+      { label: 'Vadba za nosečnice · mesečno', price: '60 €' },
+      { label: 'Vadba za mamice po porodu · mesečno', price: '60 €' },
+      { label: 'Pilates za zdravo hrbtenico · mesečno', price: '45 €' },
+      { label: 'Pilates za obstoječe vadeče · mesečno', price: '50 €' },
+    ],
+  },
+];
+
 function PricingTables() {
   return (
-    <div className="rounded-[20px] border border-dashed border-teal-light/60 bg-white p-8">
-      <p className="eyebrow text-teal-light">V pripravi · Google Sheets integracija</p>
-      <h3 className="mt-3 font-display text-2xl text-teal-dark">
-        Cene se dinamično nalagajo iz Google Sheeta
-      </h3>
-      <p className="mt-3 text-ink-soft text-[0.95rem]">
-        Interna tabela se osvežuje v največ eni uri. Če tabela trenutno ni dosegljiva,
-        nam piši SMS za aktualne cene.
-      </p>
+    <div className="grid gap-5 md:grid-cols-2">
+      {PRICING_GROUPS.map((group) => (
+        <article
+          key={group.title}
+          className="rounded-[22px] bg-white p-7 md:p-8 shadow-soft"
+        >
+          {group.meta ? (
+            <p className="eyebrow text-teal-light">{group.meta}</p>
+          ) : null}
+          <h3 className="mt-2 font-display text-2xl text-teal-dark">
+            {group.title}
+          </h3>
+          <ul className="mt-5 divide-y divide-rule">
+            {group.items.map((item) => (
+              <li
+                key={item.label}
+                className="flex items-baseline justify-between gap-5 py-3"
+              >
+                <div className="min-w-0 flex-1">
+                  <span className="block text-[0.95rem] leading-snug text-ink-soft">
+                    {item.label}
+                  </span>
+                  {item.note ? (
+                    <span className="mt-0.5 block text-xs text-ink-mute">
+                      {item.note}
+                    </span>
+                  ) : null}
+                </div>
+                <span className="whitespace-nowrap font-display text-lg text-teal-dark">
+                  {item.price}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
     </div>
   );
 }

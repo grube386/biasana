@@ -40,6 +40,7 @@ export function PrviKorak({
           )}
           style={{
             ['--d' as any]: '140ms',
+            fontFamily: 'var(--font-harabara)',
             fontSize: 'clamp(30px, 4.4vw, 52px)',
             lineHeight: 1.05,
             fontWeight: 400,
