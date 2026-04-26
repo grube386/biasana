@@ -248,8 +248,8 @@ body {
     );
     -webkit-mask-image: url('/brand/vzorec-clean.svg');
             mask-image: url('/brand/vzorec-clean.svg');
-    -webkit-mask-size: 70px auto;
-            mask-size: 70px auto;
+    -webkit-mask-size: 150px auto;
+            mask-size: 150px auto;
     -webkit-mask-repeat: repeat;
             mask-repeat: repeat;
     clip-path: circle(0px at 50% 50%);

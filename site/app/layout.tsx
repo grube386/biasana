@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { harabara, glory, openSans, fraunces, baloo2 } from './fonts';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { TouchVzorec } from '@/components/TouchVzorec';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${harabara.variable} ${openSans.variable} ${glory.variable} ${fraunces.variable} ${baloo2.variable}`}
     >
       <body className="min-h-screen flex flex-col antialiased">
+        <TouchVzorec />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
