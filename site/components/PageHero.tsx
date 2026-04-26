@@ -137,9 +137,9 @@ export function PageHero({
             {lede ? (
               <div
                 className={cn(
-                  // Hero intro: slightly larger than 1.06rem (+2px) and semibold so the copy feels clearer.
-                  'mt-8 max-w-[480px] text-[calc(1.06rem+2px)] font-semibold leading-[1.6] animate-fade-in',
-                  isDeep ? 'text-white/85' : 'text-ink-soft'
+                  // Hero intro: child MDX elements inherit this wrapper color so PageHero controls the lede color.
+                  'mt-8 max-w-[480px] text-[calc(1.06rem+2px)] font-semibold animate-fade-in [&_*]:text-inherit',
+                  isDeep ? 'text-white/85' : 'text-ink-hard'
                 )}
                 style={{ animationDelay: '260ms' }}
               >

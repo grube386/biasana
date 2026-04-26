@@ -32,6 +32,7 @@ const config: Config = {
           DEFAULT: '#1a2a28',
           soft: '#4a5d5a',
           mute: '#6b7875',
+          hard: '#1a2a28',
         },
       },
       fontFamily: {
