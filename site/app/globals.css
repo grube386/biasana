@@ -262,6 +262,16 @@ body {
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 rounded-full bg-teal-deep text-white px-7 py-3.5 text-[0.95rem] font-semibold tracking-wide shadow-soft transition-all duration-300;
   }
+  /* Keep CTA link text white in every anchor state (normal/visited/interactive). */
+  .btn-primary,
+  .btn-primary:visited,
+  .btn-primary:hover,
+  .btn-primary:focus,
+  .btn-primary:focus-visible,
+  .btn-primary:active {
+    color: #fff;
+    text-decoration: none;
+  }
   .btn-primary:hover {
     @apply shadow-card -translate-y-0.5;
   }

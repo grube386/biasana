@@ -52,8 +52,9 @@ const config: Config = {
         reading: '46rem',
       },
       spacing: {
-        'section': 'clamp(4rem, 9vw, 8rem)',
-        'section-sm': 'clamp(2.5rem, 6vw, 5rem)',
+        // Reduce global vertical section spacing so long pages feel denser.
+        'section': 'clamp(3rem, 6vw, 5rem)',
+        'section-sm': 'clamp(1.875rem, 4vw, 3.125rem)',
       },
       borderRadius: {
         organic: '42% 58% 55% 45% / 52% 48% 52% 48%',

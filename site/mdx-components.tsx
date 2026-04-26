@@ -129,7 +129,8 @@ function Section({
       titleVariant={titleVariant}
       className={className}
     >
-      <div className="space-y-5 mt-[30px] mb-[30px]">{children}</div>
+      {/* Reduce inner section spacing to match the tighter page layout. */}
+      <div className="space-y-4 mt-[20px] mb-[20px]">{children}</div>
     </SectionComp>
   );
 }
@@ -402,22 +403,28 @@ type EmailCtaProps = {
   email: string;
   subject?: string;
   large?: boolean;
+  /** When true, wrap the button in a full-width flex row so it sits centered (e.g. course pages). */
+  centered?: boolean;
   children?: ReactNode;
 };
 
-function EmailCta({ email, subject, large, children }: EmailCtaProps) {
+function EmailCta({ email, subject, large, centered, children }: EmailCtaProps) {
   const href = subject
     ? `mailto:${email}?subject=${encodeURIComponent(subject)}`
     : `mailto:${email}`;
-  return (
+  // CTA labels are plain text. Extract a string so MDX's <p> wrapping (via the
+  // custom MdxP mapping) cannot inject text-ink-soft paragraph styling or invalid
+  // block-in-anchor markup. Same pattern as SmsCta above.
+  const label = extractStringText(children) || 'Želim sodelovati';
+  const link = (
     <a
       href={href}
       className={cn(
         large ? 'btn-primary text-base px-8 py-4' : 'btn-primary',
-        'not-prose'
+        'group not-prose'
       )}
     >
-      <span>{children ?? 'Želim sodelovati'}</span>
+      <span>{label}</span>
       <svg
         aria-hidden
         viewBox="0 0 24 24"
@@ -434,6 +441,11 @@ function EmailCta({ email, subject, large, children }: EmailCtaProps) {
       </svg>
     </a>
   );
+  // Inline-flex anchors don't stretch; a full-width flex parent centers the pill in the column.
+  if (centered) {
+    return <div className="flex w-full justify-center">{link}</div>;
+  }
+  return link;
 }
 
 type SmsLinkProps = {

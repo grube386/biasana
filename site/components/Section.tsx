@@ -41,7 +41,8 @@ export function Section({
   return (
     <section
       id={id}
-      className={cn('py-[50px] md:py-[50px]', TONE_BG[tone], className)}
+      // Tighten default section vertical rhythm across MDX pages.
+      className={cn('py-[20px] md:py-[20px]', TONE_BG[tone], className)}
     >
       <div
         className={cn(
