@@ -1,6 +1,9 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { cn } from '@/lib/cn';
+import { LogoMark } from './LogoMark';
 
 type Props = {
   className?: string;
@@ -9,6 +12,8 @@ type Props = {
 };
 
 export function Logo({ className, variant = 'full', invert = false }: Props) {
+  const [animating, setAnimating] = useState(false);
+
   return (
     <Link
       href="/"
@@ -16,6 +21,8 @@ export function Logo({ className, variant = 'full', invert = false }: Props) {
       className={cn('inline-flex items-center gap-3 group', className)}
       // Persisted browser tweak: preserve logo-link horizontal offset from the preview.
       style={{ marginLeft: '10px', marginRight: '15px' }}
+      onMouseEnter={() => setAnimating(true)}
+      onMouseLeave={() => setAnimating(false)}
     >
       <span
         className={cn(
@@ -23,14 +30,7 @@ export function Logo({ className, variant = 'full', invert = false }: Props) {
           invert ? 'bg-white/10' : 'bg-sage-paper'
         )}
       >
-        <Image
-          src="/brand/logo.svg"
-          alt=""
-          fill
-          sizes="40px"
-          className="object-contain p-0.5"
-          priority
-        />
+        <LogoMark animating={animating} className="p-0.5" />
       </span>
       {variant !== 'mark' ? (
         <span

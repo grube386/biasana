@@ -1,0 +1,222 @@
+'use client';
+
+import { useRef, useEffect, useId } from 'react';
+import { cn } from '@/lib/cn';
+
+type Props = {
+  animating: boolean;
+  className?: string;
+};
+
+export function LogoMark({ animating, className }: Props) {
+  const uid = useId();
+  const g = (id: string) => `${uid}-${id}`;
+
+  const clip1aCircle = useRef<SVGCircleElement>(null);
+  const clip1bCircle = useRef<SVGCircleElement>(null);
+  const clip2Circle = useRef<SVGCircleElement>(null);
+  const clip3Rect = useRef<SVGRectElement>(null);
+  const clip4Rect = useRef<SVGRectElement>(null);
+
+  const anim1a = useRef<SVGAnimateElement>(null);
+  const anim1b = useRef<SVGAnimateElement>(null);
+  const anim2 = useRef<SVGAnimateElement>(null);
+  const anim3x = useRef<SVGAnimateElement>(null);
+  const anim3w = useRef<SVGAnimateElement>(null);
+  const anim4 = useRef<SVGAnimateElement>(null);
+
+  useEffect(() => {
+    if (!animating) return;
+
+    [anim1a, anim1b, anim2, anim3x, anim3w, anim4].forEach(r => r.current?.endElement());
+
+    clip1aCircle.current?.setAttribute('r', '0');
+    clip1bCircle.current?.setAttribute('r', '0');
+    clip2Circle.current?.setAttribute('r', '0');
+    clip3Rect.current?.setAttribute('x', '140');
+    clip3Rect.current?.setAttribute('width', '0');
+    clip4Rect.current?.setAttribute('width', '0');
+
+    const timers = [
+      setTimeout(() => anim1a.current?.beginElement(), 0),
+      setTimeout(() => anim1b.current?.beginElement(), 150),
+      setTimeout(() => anim2.current?.beginElement(), 275),
+      setTimeout(() => { anim3x.current?.beginElement(); anim3w.current?.beginElement(); }, 375),
+      setTimeout(() => anim4.current?.beginElement(), 700),
+    ];
+
+    return () => timers.forEach(clearTimeout);
+  }, [animating]);
+
+  return (
+    <svg
+      viewBox="0 0 65.557998 41.435002"
+      xmlns="http://www.w3.org/2000/svg"
+      className={cn('block w-full h-full', className)}
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient
+          x1="154.03999" y1="124.26" x2="258.23999" y2="124.26"
+          gradientUnits="userSpaceOnUse"
+          spreadMethod="pad"
+          id={g('lg22')}
+          gradientTransform="matrix(0.35277776,0,0,-0.35277776,23.515932,210.75403)"
+        >
+          <stop stopOpacity={1} stopColor="#2f9688" offset="0" />
+          <stop stopOpacity={1} stopColor="#257066" offset="0.3" />
+          <stop stopOpacity={1} stopColor="#04524c" offset="1" />
+        </linearGradient>
+
+        <radialGradient
+          fx="0" fy="0" cx="0" cy="0" r="0.5"
+          gradientUnits="userSpaceOnUse"
+          gradientTransform="matrix(21.370758,0,0,33.955558,125.35061,154.10572)"
+          spreadMethod="pad"
+          id={g('rg10')}
+        >
+          <stop stopOpacity={1} stopColor="#ffffff" offset="0" />
+          <stop stopOpacity={1} stopColor="#abcdc3" offset="0.3" />
+          <stop stopOpacity={1} stopColor="#04524c" offset="1" />
+        </radialGradient>
+
+        <radialGradient
+          fx="0" fy="0" cx="0" cy="0" r="0.5"
+          gradientUnits="userSpaceOnUse"
+          gradientTransform="matrix(15.251782,0,0,27.308978,118.819,157.67925)"
+          spreadMethod="pad"
+          id={g('rg13')}
+        >
+          <stop stopOpacity={1} stopColor="#ffffff" offset="0" />
+          <stop stopOpacity={1} stopColor="#abcdc3" offset="0.3" />
+          <stop stopOpacity={1} stopColor="#04524c" offset="1" />
+        </radialGradient>
+
+        <radialGradient
+          fx="0" fy="0" cx="0" cy="0" r="0.5"
+          gradientUnits="userSpaceOnUse"
+          gradientTransform="matrix(48.487359,0,0,36.718817,113.03411,146.84291)"
+          spreadMethod="pad"
+          id={g('rg16')}
+        >
+          <stop stopOpacity={1} stopColor="#ffffff" offset="0" />
+          <stop stopOpacity={1} stopColor="#abcdc3" offset="0.3" />
+          <stop stopOpacity={1} stopColor="#04524c" offset="1" />
+        </radialGradient>
+
+        <radialGradient
+          fx="0" fy="0" cx="0" cy="0" r="0.5"
+          gradientUnits="userSpaceOnUse"
+          gradientTransform="matrix(26.328936,0,0,25.094296,92.361815,158.3387)"
+          spreadMethod="pad"
+          id={g('rg19')}
+        >
+          <stop stopOpacity={1} stopColor="#ffffff" offset="0" />
+          <stop stopOpacity={1} stopColor="#abcdc3" offset="0.3" />
+          <stop stopOpacity={1} stopColor="#04524c" offset="1" />
+        </radialGradient>
+
+        <clipPath id={g('cp1a')}>
+          <circle ref={clip1aCircle} cx="119" cy="157" r="19">
+            <animate
+              ref={anim1a}
+              attributeName="r"
+              from="0" to="19"
+              begin="indefinite"
+              dur="0.35s"
+              fill="freeze"
+            />
+          </circle>
+        </clipPath>
+
+        <clipPath id={g('cp1b')}>
+          <circle ref={clip1bCircle} cx="119" cy="155" r="34">
+            <animate
+              ref={anim1b}
+              attributeName="r"
+              from="0" to="34"
+              begin="indefinite"
+              dur="0.35s"
+              fill="freeze"
+            />
+          </circle>
+        </clipPath>
+
+        <clipPath id={g('cp2')}>
+          <circle ref={clip2Circle} cx="138" cy="160" r="55">
+            <animate
+              ref={anim2}
+              attributeName="r"
+              from="0" to="55"
+              begin="indefinite"
+              dur="0.4s"
+              fill="freeze"
+            />
+          </circle>
+        </clipPath>
+
+        <clipPath id={g('cp3')}>
+          <rect ref={clip3Rect} x="75" y="120" width="65" height="60">
+            <animate
+              ref={anim3x}
+              attributeName="x"
+              from="140" to="75"
+              begin="indefinite"
+              dur="0.35s"
+              fill="freeze"
+            />
+            <animate
+              ref={anim3w}
+              attributeName="width"
+              from="0" to="65"
+              begin="indefinite"
+              dur="0.35s"
+              fill="freeze"
+            />
+          </rect>
+        </clipPath>
+
+        <clipPath id={g('cp4')}>
+          <rect ref={clip4Rect} x="77" y="120" width="75" height="60">
+            <animate
+              ref={anim4}
+              attributeName="width"
+              from="0" to="75"
+              begin="indefinite"
+              dur="0.35s"
+              fill="freeze"
+            />
+          </rect>
+        </clipPath>
+      </defs>
+
+      <g transform="translate(-75.073696,-131.47507)">
+        <path
+          d="m 111.36103,160.64922 c 1.13132,6.00251 6.42401,8.08901 11.46923,7.44011 1.29427,-0.3352 2.97198,-0.74559 3.4828,-0.89051 0.0441,-0.0166 0.0882,-0.0349 0.13187,-0.0526 -14.34017,0.9089 -13.83499,-12.24128 -8.44938,-15.20268 l 0.009,-0.005 c 1.64151,-1.05851 3.74861,-1.13541 4.7916,0.22 2.55369,3.3209 -2.0514,6.12182 -2.22021,2.8085 -1.2731,0.47649 -0.79308,3.0155 0.97833,3.29759 1.40769,0.22461 4.40778,-0.5611 4.19519,-4.48709 -0.20302,-3.74029 -2.89041,-5.5607 -5.9104,-5.56031 -4.6204,3.6e-4 -10.01839,4.26311 -8.47792,12.432"
+          style={{ fill: `url(#${g('rg13')})`, fillRule: 'evenodd', stroke: 'none', strokeWidth: 0.352778 }}
+          clipPath={`url(#${g('cp1a')})`}
+        />
+        <path
+          d="m 128.25894,153.27722 c -0.62992,7.87552 -7.86249,9.90692 -10.77439,6.95491 -2.87161,-2.9119 -1.62691,-6.9064 0.55058,-8.30171 l -0.008,0.005 -0.009,0.005 c -5.40162,2.96189 -5.9085,16.11429 8.4739,15.2055 4.02608,-1.5838 7.73081,-4.88901 9.54338,-9.4802 -0.36389,0.92079 -0.80398,1.78989 -1.30729,2.60379 0.58579,-2.13618 0.50031,-4.3233 -0.1252,-6.40747 h -3.5e-4 c -0.48641,-1.62281 -1.30031,-3.18361 -2.38062,-4.60982 l -0.006,-0.008 c -0.16683,-0.21988 -0.3405,-0.4373 -0.5207,-0.65091 l -0.0129,-0.0159 c -0.0596,-0.0706 -0.1197,-0.14023 -0.18052,-0.2105 l -0.002,-0.002 c -0.18069,-0.2075 -0.36738,-0.4113 -0.55979,-0.6115 l -0.0476,-0.049 c -0.17861,-0.18499 -0.36181,-0.36639 -0.5503,-0.54408 l -0.0611,-0.0585 c -0.0572,-0.0536 -0.11521,-0.10699 -0.17381,-0.16019 l -0.0692,-0.0629 c -0.18528,-0.16743 -0.37458,-0.33161 -0.56819,-0.49283 l -0.0887,-0.0733 c -0.0584,-0.0481 -0.1174,-0.0958 -0.1772,-0.14291 l -0.0859,-0.0684 c -0.0987,-0.078 -0.19791,-0.1548 -0.29891,-0.23089 -0.041,-0.0314 -0.0824,-0.0629 -0.1241,-0.0941 -0.0535,-0.0395 -0.10721,-0.0792 -0.16108,-0.11829 l -0.12792,-0.0917 c -0.0535,-0.0383 -0.10661,-0.0765 -0.1609,-0.11419 -0.0495,-0.0351 -0.0999,-0.069 -0.15021,-0.10382 -0.0857,-0.0589 -0.1729,-0.1172 -0.26,-0.17438 -0.0497,-0.0332 -0.0997,-0.066 -0.14947,-0.0985 -0.0516,-0.0333 -0.10393,-0.0666 -0.15561,-0.0995 -0.0514,-0.0326 -0.10302,-0.0643 -0.15452,-0.0963 -0.0715,-0.0446 -0.1439,-0.089 -0.21689,-0.13261 -0.0716,-0.0427 -0.14291,-0.086 -0.21502,-0.1276 -0.0486,-0.0286 -0.098,-0.0571 -0.14707,-0.0849 -0.0585,-0.0327 -0.1162,-0.066 -0.17512,-0.0984 -0.0504,-0.0284 -0.1016,-0.0567 -0.153,-0.0852 -0.0823,-0.0444 -0.1646,-0.0889 -0.2479,-0.13268 -0.05,-0.0265 -0.0997,-0.0522 -0.15017,-0.0781 -0.0771,-0.0393 -0.15392,-0.0789 -0.23132,-0.11751 l -0.13398,-0.0662 c -0.0747,-0.0364 -0.14941,-0.0719 -0.22423,-0.10759 -0.0392,-0.0189 -0.0782,-0.0373 -0.11779,-0.0557 -0.10749,-0.0499 -0.21558,-0.099 -0.32389,-0.14682 l -0.1144,-0.05 c -0.0792,-0.034 -0.15921,-0.0682 -0.2394,-0.10199 l -0.1313,-0.0543 c -0.091,-0.0374 -0.18129,-0.0739 -0.27259,-0.10951 l -0.0797,-0.0315 c -0.11388,-0.0441 -0.2285,-0.0873 -0.34318,-0.12911 l -0.127,-0.0454 c -0.0818,-0.0294 -0.16422,-0.0581 -0.246,-0.086 -0.0419,-0.0148 -0.0834,-0.0287 -0.1252,-0.0431 -0.11832,-0.0396 -0.2371,-0.0784 -0.3568,-0.11582 l -0.0697,-0.021 c -0.10002,-0.0307 -0.19982,-0.0608 -0.29972,-0.0901 l -0.12898,-0.0369 c -0.0973,-0.0274 -0.19491,-0.0548 -0.29302,-0.0805 l -0.0819,-0.0223 c -0.12541,-0.0331 -0.25142,-0.0646 -0.37842,-0.0946 l -0.0963,-0.023 c -0.0975,-0.023 -0.19562,-0.045 -0.29383,-0.0666 l -0.11818,-0.0256 c -0.12841,-0.0271 -0.257,-0.0536 -0.38612,-0.0784 4.402,1.29988 7.84063,5.44068 7.40131,10.93657"
+          style={{ fill: `url(#${g('rg10')})`, fillRule: 'evenodd', stroke: 'none', strokeWidth: 0.352778 }}
+          clipPath={`url(#${g('cp1b')})`}
+        />
+        <path
+          d="m 115.04904,135.54082 c -7.412,3.10953 -12.7496,10.43863 -16.232095,17.4969 -1.78911,3.62461 -5.86271,7.99811 -10.079919,7.85671 -0.06061,-0.002 -0.122485,-0.005 -0.184891,-0.0103 2.4444,0.21371 4.4794,0.16602 6.5175,-0.63401 4.62559,-1.81578 6.966095,-6.74268 10.428405,-10.55388 l 3.5e-4,-3.5e-4 c 2.2963,-3.41277 5.32092,-6.3693 9.37821,-7.37598 0.96072,-0.2382 1.90451,-0.3567 2.81891,-0.3646 l 7e-4,-0.001 0.01,7.1e-4 c 1.09932,-0.009 2.15571,0.1391 3.1466,0.4312 9.32031,1.77461 16.0014,10.171 13.87863,17.90089 1.11527,-1.80121 1.92108,-3.87159 2.27517,-6.17661 1.0596,-6.56089 -0.96319,-13.37207 -6.51009,-17.27789 -2.63331,-1.85409 -5.61002,-2.71169 -8.63018,-2.71169 -2.29144,0 -4.60721,0.4936 -6.81722,1.42038 z m -26.511298,25.3419 -0.0014,-3.5e-4 -0.06459,-0.006 0.06611,0.006 z m 0.01439,0.001 c -0.0025,-3.5e-4 -0.006,-3.5e-4 -0.0085,-0.001 l -0.0059,-3.5e-4 c 0.0049,3.5e-4 0.0099,0.001 0.01439,0.001"
+          style={{ fill: `url(#${g('rg16')})`, fillRule: 'evenodd', stroke: 'none', strokeWidth: 0.352778 }}
+          clipPath={`url(#${g('cp2')})`}
+        />
+        <path
+          d="m 94.995125,160.23484 c -2.03958,0.8018 -4.07638,0.8491 -6.523494,0.63398 l -0.0073,-3.5e-4 c -1.898685,-0.159 -4.313907,-0.8617 -4.969298,-3.63111 -0.759318,-3.20661 2.636908,-5.38469 5.218501,-5.37429 -3.885988,-0.0527 -7.6968,1.01678 -9.077819,4.48131 -0.600075,1.95989 -0.785565,3.73669 -0.434869,6.3984 2.228885,3.89999 6.590876,6.29637 11.361979,4.83189 2.31172,-0.70962 4.32791,-2.188 6.0283,-3.95351 0.759,-0.78811 1.45451,-1.63291 2.08541,-2.49231 2.070705,-2.8188 3.449195,-5.71807 5.109405,-8.75838 0.49939,-0.91461 1.1158,-1.79179 1.7067,-2.6719 l 0.0336,-0.0546 c -3.4609,3.81579 -5.907985,8.77267 -10.531105,10.59088 z m -6.278807,-8.3718 h 0.0082 c -0.0036,0 -0.0072,0 -0.01101,0 0.0011,0 0.0018,0 0.0028,0"
+          style={{ fill: `url(#${g('rg19')})`, fillRule: 'evenodd', stroke: 'none', strokeWidth: 0.352778 }}
+          clipPath={`url(#${g('cp3')})`}
+        />
+        <path
+          d="m 77.750644,156.02155 c -0.170603,2.34477 0.363573,4.69028 1.524388,6.72207 -0.350696,-2.66259 -0.165594,-4.43939 0.434093,-6.39977 1.381019,-3.46573 5.191689,-4.53542 9.077819,-4.48243 1.592192,0.009 3.410481,0.59302 5.251701,1.98882 4.74189,4.2286 12.973695,16.47698 20.579795,14.48918 -4.5115,-1.5337 -6.56971,-3.55427 -10.07699,-8.10997 -1.4236,-1.84831 -3.08491,-4.1142 -5.246205,-6.9348 -3.25191,-4.24371 -7.94731,-6.5109 -12.131714,-6.50992 -4.761089,3.6e-4 -8.860895,2.9367 -9.412887,9.23682"
+          style={{ fill: `url(#${g('lg22')})`, fillRule: 'evenodd', stroke: 'none', strokeWidth: 0.352778 }}
+          clipPath={`url(#${g('cp4')})`}
+        />
+      </g>
+    </svg>
+  );
+}
