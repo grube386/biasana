@@ -1,23 +1,47 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Logo } from './Logo';
 import { NAV_PRIMARY } from '@/lib/nav';
+import { COURSES } from '@/lib/courses';
 import { smsHref, PHONE_DISPLAY } from '@/lib/contact';
 import { cn } from '@/lib/cn';
 
 const ROUTES_WITH_TEAL_HERO = new Set<string>(['/']);
+const DROPDOWN_HREF = '/spletni-tecaji';
 
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileCoursesOpen, setMobileCoursesOpen] = useState(false);
+  const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const overHero = ROUTES_WITH_TEAL_HERO.has(pathname ?? '');
   const transparent = overHero && !scrolled;
   const tealTop = !overHero && !scrolled;
   const lightText = transparent || tealTop;
+
+  const isActive = useCallback(
+    (href: string) => {
+      if (href === DROPDOWN_HREF) {
+        return pathname === href || (pathname?.startsWith(href + '/') ?? false);
+      }
+      return pathname === href;
+    },
+    [pathname]
+  );
+
+  const openDropdown = useCallback(() => {
+    if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
+    setDropdownOpen(true);
+  }, []);
+
+  const closeDropdown = useCallback(() => {
+    dropdownTimeout.current = setTimeout(() => setDropdownOpen(false), 150);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -28,6 +52,8 @@ export function Header() {
 
   useEffect(() => {
     setOpen(false);
+    setDropdownOpen(false);
+    setMobileCoursesOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -44,7 +70,7 @@ export function Header() {
         transparent
           ? 'bg-transparent'
           : tealTop
-            ? 'bg-teal-deep text-white overflow-hidden border-b border-white/10'
+            ? 'bg-teal-deep text-white border-b border-white/10'
             : 'bg-[#fbfbf9]/85 backdrop-blur-md border-b border-rule'
       )}
       data-over-hero={overHero ? 'true' : 'false'}
@@ -78,9 +104,96 @@ export function Header() {
           }}
         >
           {NAV_PRIMARY.map((item) => {
-            const active = pathname === item.href;
+            const active = isActive(item.href);
             // Keep top-state inactive links predictable even with global anchor hover rules.
             const topStateInactiveLinkClass = '!text-white/85 hover:!text-white';
+
+            if (item.href === DROPDOWN_HREF) {
+              return (
+                <div
+                  key={item.href}
+                  className="relative"
+                  onMouseEnter={openDropdown}
+                  onMouseLeave={closeDropdown}
+                  onFocusCapture={openDropdown}
+                  onBlurCapture={closeDropdown}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Escape') setDropdownOpen(false);
+                  }}
+                >
+                  <Link
+                    href={item.href}
+                    aria-haspopup="true"
+                    aria-expanded={dropdownOpen}
+                    aria-controls="courses-dropdown"
+                    className={cn(
+                      'relative inline-flex items-center gap-1 text-[0.88rem] font-body font-semibold tracking-wide transition-colors',
+                      lightText
+                        ? active
+                          ? '!text-white hover:!text-white'
+                          : topStateInactiveLinkClass
+                        : active
+                          ? 'text-teal-deep'
+                          : 'text-ink-soft'
+                    )}
+                  >
+                    {item.label}
+                    <svg
+                      aria-hidden
+                      viewBox="0 0 24 24"
+                      className={cn(
+                        'h-3.5 w-3.5 transition-transform duration-200',
+                        dropdownOpen && 'rotate-180'
+                      )}
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                    {active ? (
+                      <span
+                        className={cn(
+                          'absolute -bottom-1 left-0 right-0 h-px',
+                          lightText ? 'bg-white/70' : 'bg-teal-deep/70'
+                        )}
+                      />
+                    ) : null}
+                  </Link>
+
+                  <div
+                    id="courses-dropdown"
+                    role="menu"
+                    aria-label="Spletni tečaji"
+                    className={cn(
+                      'absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[340px] rounded-xl border border-rule bg-[#fbfbf9]/85 backdrop-blur-md shadow-card transition-all duration-200 origin-top',
+                      dropdownOpen
+                        ? 'opacity-100 translate-y-0 pointer-events-auto'
+                        : 'opacity-0 -translate-y-2 pointer-events-none'
+                    )}
+                  >
+                    <div className="py-2">
+                      {COURSES.map((course) => (
+                        <Link
+                          key={course.slug}
+                          href={`/spletni-tecaji/${course.slug}`}
+                          role="menuitem"
+                          className="flex flex-col gap-0.5 px-4 py-3 hover:bg-teal-deep/5 transition-colors"
+                          onClick={() => setDropdownOpen(false)}
+                        >
+                          <span className="text-sm font-semibold text-ink leading-snug">
+                            {course.title}
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
             return (
               <Link
                 key={item.href}
@@ -189,7 +302,70 @@ export function Header() {
           </div>
           <nav className="flex flex-col gap-1">
             {NAV_PRIMARY.map((item, i) => {
-              const active = pathname === item.href;
+              const active = isActive(item.href);
+
+              if (item.href === DROPDOWN_HREF) {
+                return (
+                  <div key={item.href} className="border-b border-teal-deep/10">
+                    <div className="flex items-center">
+                      <Link
+                        href={item.href}
+                        className={cn(
+                          'flex-1 py-4 font-display text-2xl transition-colors',
+                          active ? 'text-teal-deep' : 'text-ink'
+                        )}
+                        style={{ animationDelay: `${i * 40}ms` }}
+                      >
+                        {item.label}
+                      </Link>
+                      <button
+                        type="button"
+                        aria-expanded={mobileCoursesOpen}
+                        aria-label={mobileCoursesOpen ? 'Zapri tečaje' : 'Razširi tečaje'}
+                        onClick={() => setMobileCoursesOpen((v) => !v)}
+                        className="p-3 text-ink-soft"
+                      >
+                        <svg
+                          aria-hidden
+                          viewBox="0 0 24 24"
+                          className={cn(
+                            'h-5 w-5 transition-transform duration-300',
+                            mobileCoursesOpen && 'rotate-180'
+                          )}
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="m6 9 6 6 6-6" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div
+                      className={cn(
+                        'grid transition-all duration-300',
+                        mobileCoursesOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                      )}
+                    >
+                      <div className="overflow-hidden">
+                        <div className="pb-2 flex flex-col">
+                          {COURSES.map((course) => (
+                            <Link
+                              key={course.slug}
+                              href={`/spletni-tecaji/${course.slug}`}
+                              className="pl-5 py-2.5 text-lg text-ink-soft hover:text-teal-deep transition-colors"
+                            >
+                              <span className="block font-semibold leading-snug">{course.title}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
               return (
                 <Link
                   key={item.href}
