@@ -236,6 +236,29 @@ body {
     .btn-outline-white:active { transform: none; }
   }
 
+  .vzorec-ripple {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle at 50% 50%,
+      var(--teal-base) 0,
+      var(--teal-base) 40px,
+      transparent 50px
+    );
+    -webkit-mask-image: url('/brand/vzorec-clean.svg');
+            mask-image: url('/brand/vzorec-clean.svg');
+    -webkit-mask-size: 70px auto;
+            mask-size: 70px auto;
+    -webkit-mask-repeat: repeat;
+            mask-repeat: repeat;
+    clip-path: circle(0px at 50% 50%);
+    opacity: 0;
+    animation: vzorec-expand 200ms ease-out forwards;
+    pointer-events: none;
+    will-change: clip-path, opacity;
+  }
+
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 rounded-full bg-teal-deep text-white px-7 py-3.5 text-[0.95rem] font-semibold tracking-wide shadow-soft transition-all duration-300;
   }
@@ -256,6 +279,17 @@ body {
   }
 }
 
+
+@keyframes vzorec-expand {
+  from {
+    clip-path: circle(0px at 50% 50%);
+    opacity: 0;
+  }
+  to {
+    clip-path: circle(50px at 50% 50%);
+    opacity: 0.25;
+  }
+}
 
 @layer utilities {
   .grain {
