@@ -36,7 +36,7 @@ export function PrviKorak({
           className={cn(
             'fade',
             shown && 'in',
-            'mx-auto mt-3 max-w-[640px] font-display uppercase tracking-[0.03em] text-white'
+            'mx-auto mt-3 max-w-[640px] font-display tracking-[0.03em] text-white'
           )}
           style={{
             ['--d' as any]: '140ms',

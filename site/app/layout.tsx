@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { harabara, glory, openSans, fraunces } from './fonts';
+import { harabara, glory, openSans, fraunces, baloo2 } from './fonts';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import './globals.css';
@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="sl"
-      className={`${harabara.variable} ${openSans.variable} ${glory.variable} ${fraunces.variable}`}
+      className={`${harabara.variable} ${openSans.variable} ${glory.variable} ${fraunces.variable} ${baloo2.variable}`}
     >
       <body className="min-h-screen flex flex-col antialiased">
         <Header />

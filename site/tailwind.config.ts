@@ -34,7 +34,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ['var(--font-harabara)', 'Georgia', 'serif'],
+        display: ['var(--font-baloo2)', 'Georgia', 'serif'],
         serif: ['var(--font-fraunces)', 'Fraunces', 'Cormorant Garamond', 'serif'],
         body: ['var(--font-opensans)', 'system-ui', 'sans-serif'],
         glory: ['var(--font-glory)', 'cursive'],
