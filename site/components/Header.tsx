@@ -20,8 +20,10 @@ export function Header() {
   const [mobileCoursesOpen, setMobileCoursesOpen] = useState(false);
   const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const overHero = ROUTES_WITH_TEAL_HERO.has(pathname ?? '');
-  const transparent = overHero && !scrolled;
-  const tealTop = !overHero && !scrolled;
+  // Keep the mobile menu visually identical to the top-of-page state, even if the user opens it mid-scroll.
+  const scrolledForHeaderStyle = open ? false : scrolled;
+  const transparent = overHero && !scrolledForHeaderStyle;
+  const tealTop = !overHero && !scrolledForHeaderStyle;
   const lightText = transparent || tealTop;
 
   const isActive = useCallback(

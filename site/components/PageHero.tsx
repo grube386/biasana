@@ -137,7 +137,8 @@ export function PageHero({
             {lede ? (
               <div
                 className={cn(
-                  'mt-8 max-w-[480px] text-[1.06rem] leading-[1.6] animate-fade-in',
+                  // Hero intro: slightly larger than 1.06rem (+2px) and medium weight for readability.
+                  'mt-8 max-w-[480px] text-[calc(1.06rem+2px)] font-medium leading-[1.6] animate-fade-in',
                   isDeep ? 'text-white/85' : 'text-ink-soft'
                 )}
                 style={{ animationDelay: '260ms' }}
