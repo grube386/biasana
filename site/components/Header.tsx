@@ -68,7 +68,9 @@ export function Header() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-40 transition-all duration-500',
+        'fixed inset-x-0 top-0 z-40',
+        // Snap to the open-menu colors immediately so the menu does not start with faded scrolled colors.
+        open ? 'transition-none' : 'transition-all duration-500',
         transparent
           ? 'bg-transparent'
           : tealTop
