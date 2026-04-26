@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
 import { useReveal } from '@/lib/useReveal';
 import { smsHref } from '@/lib/contact';
 import { cn } from '@/lib/cn';
@@ -38,6 +38,16 @@ export function HomeHero({
   secondaryLabel = 'Najdi svojo pot',
 }: HomeHeroProps = {}) {
   const [ref, shown] = useReveal<HTMLElement>();
+  const [animTs, setAnimTs] = useState(0);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    if (shown) setAnimTs(Date.now());
+  }, [shown]);
+
   return (
     <section
       ref={ref}
@@ -78,15 +88,28 @@ export function HomeHero({
                     'radial-gradient(circle, rgba(255,255,255,.18) 0%, rgba(255,255,255,.06) 40%, transparent 70%)',
                 }}
               />
-              <Image
-                src="/brand/logo.svg"
-                alt="Biasana"
-                width={500}
-                height={500}
-                priority
-                className="relative h-auto w-full"
-                style={{ filter: 'drop-shadow(0 10px 30px rgba(0,0,0,.25))' }}
-              />
+              {animTs > 0 ? (
+                <Image
+                  key={animTs}
+                  src={`/brand/logo-animated.svg?v=${animTs}`}
+                  alt="Biasana"
+                  width={500}
+                  height={500}
+                  unoptimized
+                  className="relative h-auto w-full"
+                  style={{ filter: 'drop-shadow(0 10px 30px rgba(0,0,0,.25))' }}
+                />
+              ) : (
+                <Image
+                  src="/brand/logo.svg"
+                  alt="Biasana"
+                  width={500}
+                  height={500}
+                  priority
+                  className="relative h-auto w-full"
+                  style={{ filter: 'drop-shadow(0 10px 30px rgba(0,0,0,.25))' }}
+                />
+              )}
             </div>
           </div>
 
