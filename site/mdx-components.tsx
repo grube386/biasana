@@ -336,6 +336,75 @@ function PersonBlock({
   );
 }
 
+// ─── <TextImageSplit> — two columns: copy + image (e.g. BiaBon on cenik) ─
+type TextImageSplitProps = {
+  image: ImgLike;
+  /** When set, renders an h2 in Give You Glory (--font-glory / font-glory) above the text column. */
+  title?: string;
+  imagePosition?: 'left' | 'right';
+  /** Tailwind aspect class; landscape vouchers often use ~2:1 */
+  imageAspectClass?: string;
+  children?: ReactNode;
+};
+
+function TextImageSplit({
+  image,
+  title,
+  imagePosition = 'right',
+  imageAspectClass = 'aspect-[2/1]',
+  children,
+}: TextImageSplitProps) {
+  const img = toImage(
+    image,
+    'BiaBon darilni bon: zelena mandala, spiralna ilustracija, napis Prisluhni, začuti, zaupaj si.'
+  );
+  const imageEl = img ? (
+    <div
+      className={cn(
+        'relative w-full overflow-hidden rounded-[20px] shadow-card',
+        imageAspectClass
+      )}
+    >
+      <Image
+        src={img.src}
+        alt={img.alt}
+        fill
+        sizes="(min-width: 768px) 42vw, 100vw"
+        // Cover keeps the banner edge-to-edge; voucher art is already wide.
+        className="object-cover"
+      />
+    </div>
+  ) : null;
+
+  // Optional heading: use site Give You Glory (public/fonts/GiveYouGlory.ttf) instead of default MDX h2 (Baloo 2).
+  const textEl = (
+    <div className="space-y-4">
+      {title ? (
+        <h2 className="font-glory tracking-[0.02em] text-display-lg text-teal-dark mt-0 mb-0">
+          {title}
+        </h2>
+      ) : null}
+      {children}
+    </div>
+  );
+
+  return (
+    <div className="grid gap-8 md:grid-cols-2 md:gap-10 md:items-center">
+      {imagePosition === 'right' ? (
+        <>
+          {textEl}
+          {imageEl}
+        </>
+      ) : (
+        <>
+          {imageEl}
+          {textEl}
+        </>
+      )}
+    </div>
+  );
+}
+
 // ─── <MediaList> / <MediaItem> ───────────────────────────────────
 function MediaList({ children }: { children?: ReactNode }) {
   return <ul className="grid gap-4 md:grid-cols-3">{children}</ul>;
@@ -853,6 +922,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Testimonial,
     TestimonialGrid,
     PersonBlock,
+    TextImageSplit,
     MediaList,
     MediaItem,
     SmsCta,
