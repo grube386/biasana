@@ -360,14 +360,13 @@ function MediaItem({ publisher, title, href, children }: MediaItemProps) {
         {...(tagProps as Record<string, string>)}
         className="group flex h-full flex-col rounded-[20px] border border-teal-deep/10 bg-white p-6 shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-card"
       >
-        <span className="eyebrow">{publisher}</span>
-        <p className="mt-3 font-display text-xl text-teal-dark group-hover:text-teal-deep">
+        <p className="font-display text-xl text-teal-dark group-hover:text-teal-deep">
           {title}
         </p>
         {children ? (
           <div className="mt-3 text-sm text-ink-soft">{children}</div>
         ) : null}
-        <span className="mt-auto pt-6 inline-flex items-center gap-2 text-sm font-semibold text-teal-deep">
+        <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-teal-deep">
           {isPlaceholder ? 'Članek' : 'Preberi članek →'}
         </span>
       </Tag>
@@ -553,17 +552,16 @@ function CourseCard({ href, tag, teacher, children }: CourseCardProps) {
         href={href}
         className="group flex h-full flex-col rounded-[22px] bg-white border border-teal-deep/10 p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
       >
-        {(tag || teacher) ? (
-          <div className="flex items-center justify-between">
-            {tag ? <span className="eyebrow text-teal-light">{tag}</span> : <span />}
-            {teacher ? <span className="text-xs text-ink-mute">z {teacher}</span> : null}
+        {teacher ? (
+          <div className="flex justify-end">
+            <span className="text-xs text-ink-mute">z {teacher}</span>
           </div>
         ) : null}
-        <h3 className="mt-4 font-display text-2xl text-teal-dark">{title}</h3>
+        <h3 className="font-display text-2xl text-teal-dark">{title}</h3>
         {description ? (
           <div className="mt-3 text-[0.95rem] text-ink-soft [&>p]:m-0">{description}</div>
         ) : null}
-        <span className="mt-auto pt-6 inline-flex items-center gap-2 text-sm font-semibold text-teal-deep">
+        <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-teal-deep">
           Preberi več →
         </span>
       </NextLink>
