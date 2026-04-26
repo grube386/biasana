@@ -65,7 +65,7 @@ export function PageHero({
           // Use a rotated source so the repeated motif runs in the intended direction.
           backgroundImage: 'url(/brand/vzorec-clean-rotated-90.svg)',
           backgroundRepeat: 'repeat-y',
-          backgroundSize: '35% auto',
+          backgroundSize: 'max(200px, 35%) auto',
           backgroundPosition: 'left center',
           opacity: isDeep
             ? 'calc(var(--pattern-opacity) * 0.8)'
