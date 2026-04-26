@@ -534,8 +534,8 @@ function Program({ name, children }: { name: string; children?: ReactNode }) {
 
 // ─── <CourseGrid> / <CourseCard> ─────────────────────────────────
 function CourseGrid({ children }: { children?: ReactNode }) {
-  // Match the tuned card matrix spacing: tighter rows, controlled columns.
-  return <ul className="grid gap-y-[15px] gap-x-5 md:grid-cols-2">{children}</ul>;
+  // Apply the latest visual spacing from the design tweak: no column gap, tight row gap.
+  return <ul className="grid gap-y-[8px] gap-x-0 md:grid-cols-2">{children}</ul>;
 }
 
 type CourseCardProps = {
@@ -548,8 +548,8 @@ type CourseCardProps = {
 function CourseCard({ href, tag, teacher, children }: CourseCardProps) {
   const { title, description } = splitCardChildren(children);
   return (
-    // Keep layout simple: spacing is controlled by the card container itself.
-    <li>
+    // Mirror the adjusted per-item inset so each card keeps the same outer rhythm.
+    <li className="mx-[5px] px-[10px]">
       <NextLink
         href={href}
         className="group flex h-full flex-col rounded-[22px] bg-white border border-teal-deep/10 pr-7 pl-[calc(theme(spacing.7)+10px)] py-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
@@ -559,13 +559,13 @@ function CourseCard({ href, tag, teacher, children }: CourseCardProps) {
           {title}
         </h3>
         {description ? (
-          // Keep compact vertical rhythm and add matching body insets.
-          <div className="mt-[5px] text-[0.95rem] text-ink-soft [&>p]:m-0 [&>p]:px-[10px]">
+          // Keep body text inset and the tighter paragraph rhythm from the visual pass.
+          <div className="mt-[5px] text-[0.95rem] text-ink-soft [&>p]:m-0 [&>p]:my-[5px] [&>p]:px-[10px]">
             {description}
           </div>
         ) : null}
-        {/* Add CTA insets and breathing room above/below while keeping the larger icon gap. */}
-        <span className="mt-[8px] mb-[8px] inline-flex items-center gap-[15px] px-[10px] text-sm font-semibold text-teal-deep">
+        {/* Use explicit 8x10 padding on the CTA block to match the tuned card sample. */}
+        <span className="inline-flex items-center gap-[15px] px-[10px] py-[8px] text-sm font-semibold text-teal-deep">
           Preberi več →
         </span>
       </NextLink>
@@ -577,6 +577,9 @@ function CourseCard({ href, tag, teacher, children }: CourseCardProps) {
 type PriceItem = { label: string; price: string; note?: string };
 type PriceGroup = { title: string; meta?: string; items: PriceItem[] };
 
+// Each group's first item is shown as the "anchor price" — the conceptual
+// entry-point for that category. Order the rest from most common to most
+// committed (single → package → seasonal).
 const PRICING_GROUPS: PriceGroup[] = [
   {
     title: 'Kraniosakralna terapija',
@@ -603,7 +606,7 @@ const PRICING_GROUPS: PriceGroup[] = [
   },
   {
     title: 'Gibalne urice · metoda Pedosana',
-    meta: '60 min · največ 4 pari mamica–dojenček',
+    meta: '60 min · par mamica–dojenček',
     items: [
       { label: 'Posamezni obisk', price: '22 €' },
       { label: 'Mesečna karta (4 obiski)', price: '80 €' },
@@ -612,55 +615,72 @@ const PRICING_GROUPS: PriceGroup[] = [
   },
   {
     title: 'Spletni tečaji',
-    meta: 'Preko Zoom-a, v živo',
+    meta: 'Preko Zoom-a, na daljavo',
     items: [
-      { label: 'Shiatsu masaža za dojenčke · 4-tedenski tečaj', price: '90 €' },
-      { label: 'Vadba za nosečnice · mesečno', price: '60 €' },
-      { label: 'Vadba za mamice po porodu · mesečno', price: '60 €' },
       { label: 'Pilates za zdravo hrbtenico · mesečno', price: '45 €' },
       { label: 'Pilates za obstoječe vadeče · mesečno', price: '50 €' },
+      { label: 'Vadba za nosečnice · mesečno', price: '60 €' },
+      { label: 'Vadba za mamice po porodu · mesečno', price: '60 €' },
+      { label: 'Shiatsu masaža za dojenčke · 4-tedenski tečaj', price: '90 €' },
     ],
   },
 ];
 
 function PricingTables() {
   return (
-    <div className="grid gap-5 md:grid-cols-2">
-      {PRICING_GROUPS.map((group) => (
-        <article
-          key={group.title}
-          className="rounded-[22px] bg-white p-7 md:p-8 shadow-soft"
-        >
-          {group.meta ? (
-            <p className="eyebrow text-teal-light">{group.meta}</p>
-          ) : null}
-          <h3 className="mt-2 font-display text-2xl text-teal-dark">
-            {group.title}
-          </h3>
-          <ul className="mt-5 divide-y divide-rule">
-            {group.items.map((item) => (
-              <li
-                key={item.label}
-                className="flex items-baseline justify-between gap-5 py-3"
-              >
-                <div className="min-w-0 flex-1">
-                  <span className="block text-[0.95rem] leading-snug text-ink-soft">
-                    {item.label}
-                  </span>
-                  {item.note ? (
-                    <span className="mt-0.5 block text-xs text-ink-mute">
-                      {item.note}
+    <div className="grid gap-[2px] border border-rule bg-rule sm:grid-cols-2">
+      {PRICING_GROUPS.map((group, i) => {
+        const [headline, ...rest] = group.items;
+        return (
+          <article
+            key={group.title}
+            className="flex flex-col bg-white px-7 py-9 md:px-9 md:py-10"
+          >
+            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
+              {String(i + 1).padStart(2, '0')}
+              {group.meta ? <> · {group.meta}</> : null}
+            </div>
+
+            <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+              <h3 className="serif-display text-[1.65rem] leading-[1.15] text-teal-dark">
+                {group.title}
+              </h3>
+              <span className="font-display text-[2rem] leading-none text-teal-deep">
+                {headline.price}
+              </span>
+            </div>
+            <p className="mt-1 text-[0.85rem] text-ink-mute">
+              {headline.label}
+              {headline.note ? <> · {headline.note}</> : null}
+            </p>
+
+            {rest.length > 0 ? (
+              <ul className="mt-7 divide-y divide-rule/70">
+                {rest.map((item) => (
+                  <li
+                    key={item.label}
+                    className="flex items-baseline justify-between gap-5 py-3"
+                  >
+                    <span className="min-w-0 flex-1 text-[0.95rem] leading-snug text-ink-soft">
+                      {item.label}
                     </span>
-                  ) : null}
-                </div>
-                <span className="whitespace-nowrap font-display text-lg text-teal-dark">
-                  {item.price}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </article>
-      ))}
+                    <div className="text-right">
+                      <span className="whitespace-nowrap font-display text-lg text-teal-dark">
+                        {item.price}
+                      </span>
+                      {item.note ? (
+                        <span className="mt-0.5 block text-[0.7rem] text-ink-mute">
+                          {item.note}
+                        </span>
+                      ) : null}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </article>
+        );
+      })}
     </div>
   );
 }
