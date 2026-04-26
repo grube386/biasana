@@ -1,5 +1,5 @@
 import localFont from 'next/font/local';
-import { Open_Sans, Fraunces } from 'next/font/google';
+import { Open_Sans, Fraunces, Baloo_2 } from 'next/font/google';
 
 export const harabara = localFont({
   src: [
@@ -43,4 +43,11 @@ export const fraunces = Fraunces({
   style: ['normal', 'italic'],
   display: 'swap',
   variable: '--font-fraunces',
+});
+
+export const baloo2 = Baloo_2({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['400', '500', '600', '700', '800'],
+  display: 'swap',
+  variable: '--font-baloo2',
 });

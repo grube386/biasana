@@ -63,7 +63,7 @@ export function Section({
                   {title}
                 </h2>
               ) : (
-                <h2 className="font-display uppercase text-display-lg text-teal-dark tracking-[0.02em]">
+                <h2 className="font-display text-display-lg text-teal-dark tracking-[0.02em]">
                   {title}
                 </h2>
               )

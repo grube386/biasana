@@ -663,7 +663,7 @@ MdxH1.displayName = 'h1';
 
 const MdxH2 = ({ children, ...rest }: { children?: ReactNode }) => (
   <h2
-    className="font-display uppercase tracking-[0.02em] text-display-lg text-teal-dark mt-0 mb-0"
+    className="font-display tracking-[0.02em] text-display-lg text-teal-dark mt-0 mb-0"
     {...rest}
   >
     {children}
