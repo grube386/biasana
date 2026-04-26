@@ -64,7 +64,7 @@ body {
     text-underline-offset: 3px;
     transition: color 180ms ease, text-decoration-color 180ms ease;
   }
-  a:not(.btn-shimmer):hover {
+  a:not(.btn-shimmer, .btn-primary, .btn-ghost, .btn-white, .btn-outline-white):hover {
     color: var(--teal-dark);
     text-decoration-color: var(--teal-deep);
   }
