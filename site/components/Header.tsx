@@ -142,6 +142,7 @@ export function Header() {
           onClick={() => setOpen((v) => !v)}
           className={cn(
             'lg:hidden relative z-50 grid h-11 w-11 place-items-center rounded-full transition-colors',
+            open && 'hidden',
             lightText && !open
               ? 'border border-white/40 text-white'
               : 'border border-teal-deep/20 text-teal-deep'
@@ -169,9 +170,9 @@ export function Header() {
               onClick={() => setOpen(false)}
               className="inline-flex items-center gap-2 rounded-full border border-teal-deep/15 px-4 py-2.5 text-teal-deep text-sm font-semibold"
             >
-              <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M3 12L12 3l9 9" />
-                <path d="M9 21V12h6v9" />
+              <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+                <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
               </svg>
               Domov
             </Link>
